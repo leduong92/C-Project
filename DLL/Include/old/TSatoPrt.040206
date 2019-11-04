@@ -1,0 +1,64 @@
+#ifndef SATO_LABEL_PRINTER
+#define SATO_LABEL_PRINTER
+//=====================================================================================================================
+//
+//  	さとーバーコードプリンターの制御基本クラス(パラレルインターフェース版)
+//	
+//		FileName : tsatoprt.cpp
+//		ＮＯＫ株式会社 技術本部 生産技術部
+//		2001.6.15 coba
+//		修正日：2004. 2. 4 by N.Maeda
+//					PDF417/MAXI 追加
+//=====================================================================================================================
+
+#include <windows.h>
+#include <winspool.h>
+#include <winbase.h>
+
+#define S_ESC 0x1B
+#define S_STX 0x02
+#define S_ETX 0x03
+#define S_ENQ 0x05
+
+// プリンタ型番
+#define SATO_ER400 0
+#define SATO_ER410 1
+
+class TSatoPrinter
+{
+	public:
+		TSatoPrinter( char* ptrname, int ptrtype, BOOL* status );
+		~TSatoPrinter();
+
+		BOOL PrintStart(void);
+		BOOL PrintEnd(void);
+
+		int StartLabel(int mode, char speed);
+		int EndLabel(long page);
+
+		int	 DrawStringOutline( int x,int y,char* str, int len,short type,short yoko,short tate,short propaty);
+		int	 DrawString( int x,int y,char* str, int len,short size ,short yoko,short tate,short pitch);
+		int	 DrawKanji( int x,int y,char* str, int len,short size ,short yoko,short tate,short pitch);
+		int	 Bar39( int x,int y,short h,char* bcr,int len,BOOL guide,int hiritu,short kakudai);
+		int	 Bar128( int x,int y,short h,char* bcr,int len,BOOL guide,short kakudai);
+
+		int	 BarQR2( int x,int y,char err,short size,short mode,short joint,char* bcr, int len,short c1=0,short c2=0,short c3=0);
+		int	 BarPDF417( int x,int y,short module,short pitch,short ayamari,short data_w,short symbol_row,short type,char* bcr, int len);
+		int	 BarMAXI( int x,int y,short mode,char* bcr,int len,short service=0,short country=0,char* post=NULL);
+
+		int DrawFrame(int x,int y,int xlen,int ylen,short linewidth );
+		int DrawLine(int x,int y,int len,char direct,short linewidth );
+
+	private:
+		HANDLE	m_hPrinter;			// プリンタハンドル
+
+	 	int  ConnectPrinter(char* ptrname);
+		int  SendData(char *data,int len);
+		void SetPosition( int x, int y);
+
+		int m_prtType;
+
+		double m_dpm;
+
+};
+#endif

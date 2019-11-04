@@ -1,0 +1,553 @@
+//===========================================================================
+//
+//  	さとーバーコードプリンターの制御基本クラス
+//	
+//		FileName : tsatoprt.cpp
+//		ＮＯＫ株式会社 技術本部 生産技術部
+//		2001.6.15 coba
+//===========================================================================
+
+
+#include "tsatoprt.h"
+#include <stdio.h>
+
+
+
+//---------------------------------------------------------------------------------------------------------------------
+//	TSatoPrinter::TSatoPrinter( char* ptrname, int ptrtype, BOOL* status )
+//	タイプ：public
+//	機能　：デフォルトコンストラクタ
+//	引数１：プリンタ名
+//	引数２：プリンタタイプ 400系=0,それ以外=410
+//	引数３：（出力）初期化ｽﾃｰﾀｽ True or False
+//---------------------------------------------------------------------------------------------------------------------
+TSatoPrinter::TSatoPrinter( char* ptrname, int prtype, BOOL* status )
+{
+	*status = FALSE;
+
+	// メンバ変数の初期化
+	m_hPrinter = NULL;
+	m_prtType = prtype;
+
+	// プリンタオープン
+	if( ConnectPrinter( ptrname) ) return;
+
+	// 0.1mmあたりのドット数を算出
+	m_dpm = 0.0;
+	// 400系(203dpi 1ドット=0.125mm)
+	if( prtype==SATO_ER400)m_dpm = 0.1/0.125;
+	// 410系(203dpi 1ドット=0.083mm)
+	else m_dpm = 0.1/0.083;
+	*status = TRUE;
+
+}
+//---------------------------------------------------------------------------------------------------------------------
+//	TSatoPrinter::~TSatoPrinter()
+//	タイプ：public
+//	機能　：デストラクタ
+//---------------------------------------------------------------------------------------------------------------------
+TSatoPrinter::~TSatoPrinter()
+{
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	TSatoPrinter::TSatoPrinter( char* ptrname, int ptrtype, BOOL* status )
+//	タイプ：private
+//	機能　：プリンタを開く
+//	引数１：プリンタ名
+//	戻り値：0=OK それ以外=ERR
+//---------------------------------------------------------------------------------------------------------------------
+int  TSatoPrinter::ConnectPrinter(char* ptrname)
+{
+	PRINTER_DEFAULTS pdef;
+
+	memset( &pdef,0,sizeof(PRINTER_DEFAULTS));
+	pdef.DesiredAccess = PRINTER_ACCESS_USE;
+
+	if( OpenPrinter( ptrname, &m_hPrinter , &pdef ) == FALSE ){
+		return 1;
+	}
+	return 0;
+
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------
+//	TSatoPrinter::TSatoPrinter( char* ptrname, int ptrtype, BOOL* status )
+//	タイプ：public
+//	機能　：印刷スタート
+//---------------------------------------------------------------------------------------------------------------------
+BOOL TSatoPrinter::PrintStart(void)
+{
+	if( m_hPrinter == NULL ) return(FALSE);
+
+	DOC_INFO_1	docinfo;
+	int stat=0;
+
+	memset( &docinfo, 0, sizeof(docinfo));
+	docinfo.pDocName="NOK BarPrinter";
+	docinfo.pOutputFile= NULL;
+	docinfo.pDatatype= NULL;
+
+	stat = StartDocPrinter( m_hPrinter , 1,(LPBYTE)&docinfo);
+	if(stat==0){
+		return(FALSE);
+	}
+	return(TRUE);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	TSatoPrinter::TSatoPrinter( char* ptrname, int ptrtype, BOOL* status )
+//	タイプ：public
+//	機能　：印刷終了
+//---------------------------------------------------------------------------------------------------------------------
+BOOL TSatoPrinter::PrintEnd(void)
+{
+	if( m_hPrinter == NULL ) return(TRUE);
+	EndDocPrinter(m_hPrinter);		// 印刷終了
+	ClosePrinter(m_hPrinter);		// 印刷用コンテキスト削除
+	m_hPrinter = NULL;
+
+	return(TRUE);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	int TSatoPrinter::StartLabel(int mode)
+//	タイプ：public
+//	機能　：いわゆるStartPage()
+//	引数１：回転 コマンドESC+%に対応
+//			（プリンタ正面からみて）垂直印刷=0
+//			1=90度回転
+//			2=180度回転(逆さ)
+//			3=270度回転(逆さ)
+//	引数２：印字速度 2～6
+//---------------------------------------------------------------------------------------------------------------------
+int TSatoPrinter::StartLabel(int mode,char speed)
+{
+	if( m_hPrinter == NULL ) return(-1);
+
+	char cmd[20];
+	int ret;
+
+	// ﾃﾞｰﾀ送信開始 STX+ESCA
+	cmd[0] = S_STX;
+	cmd[1] = S_ESC;
+	cmd[2] = 'A';
+	cmd[3] = 0;
+	if( mode >0 && mode <4){
+		cmd[3] = S_ESC;
+		cmd[4] = '%';
+		cmd[5] = '0'+(char)mode;
+		cmd[6] = 0;
+	}
+	ret = SendData(cmd,(int)strlen(cmd));
+	if(ret)return(ret);
+
+	// S-JISコード
+	// ﾃﾞｰﾀ送信開始 ESCKC
+	cmd[0] = S_ESC;
+	cmd[1] = 'K';
+	cmd[2] = 'C';
+	cmd[3] = '1';					// 1=S-JIS
+	cmd[4] = 0;
+	ret = SendData(cmd,(int)strlen(cmd));
+	if(ret)return(ret);
+
+	// 連続動作offset指定 ESCPO
+	cmd[0] = S_ESC;
+	cmd[1] = 'P';
+	cmd[2] = 'O';
+	cmd[3] = '3';
+	cmd[4] = '+';
+	cmd[5] = '0';
+	cmd[6] = '0';
+	cmd[7] = 0;
+	ret = SendData(cmd,(int)strlen(cmd));
+	if(ret)return(ret);
+
+	// TearOff動作offset指定 ESCPO
+	cmd[0] = S_ESC;
+	cmd[1] = 'P';
+	cmd[2] = 'O';
+	cmd[3] = '2';
+	cmd[4] = '+';
+	cmd[5] = '0';
+	cmd[6] = '0';
+	cmd[7] = 0;
+	ret = SendData(cmd,(int)strlen(cmd));
+	if(ret)return(ret);
+
+	// 印字速度
+	if( speed < 2 ) speed = 2;		// 最低値
+	if( speed > 6 ) speed = 6;
+
+	// 410系は４迄
+	if( m_prtType==SATO_ER410 && speed > 4 ) speed=4;
+	cmd[0] = S_ESC;
+	cmd[1] = 'C';
+	cmd[2] = 'S';
+	cmd[3] =  speed+0x30;
+	cmd[4] = 0;
+	ret = SendData(cmd,(int)strlen(cmd));
+
+
+	return(ret);
+
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	int TSatoPrinter::EndLabel(short page)
+//	タイプ：public
+//	機能　：いわゆるEndPage()
+//	引数　：ｺﾋﾟｰ枚数
+//---------------------------------------------------------------------------------------------------------------------
+int TSatoPrinter::EndLabel(long page)
+{
+	if( m_hPrinter == NULL ) return(-1);
+
+	// 発行枚数
+	if( page < 1 || page > 999999 ) page=1;
+
+	char cmd[20];
+
+	// ﾃﾞｰﾀ送信終了ESCQ+maisu+ESCZ+ETX
+	memset( cmd, 0, sizeof(cmd));
+	cmd[0] = S_ESC;
+	cmd[1] = 'Q';
+	wsprintf( &cmd[2],"%ld", page);
+	cmd[strlen(cmd)]=S_ESC;
+	cmd[strlen(cmd)]='Z';
+	cmd[strlen(cmd)]=S_ETX;
+
+	return( SendData(cmd,(int)strlen(cmd)) );
+
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	int  TSatoPrinter::SendData(char *data)
+//	タイプ：private
+//	機能　：Ascii文字の印刷(漢字はだめ)
+//	引数１：x座標(0.1mm)
+//	引数２：y座標(0.1mm)
+//	引数３：文字列
+//	引数４：文字数
+//	引数５：文字サイズ(0-4)
+//	引数６：横倍率(1-12)
+//	引数７：縦倍率(1-12)
+//---------------------------------------------------------------------------------------------------------------------
+int	 TSatoPrinter::DrawString( int x,int y,char* str, int len,short size ,short yoko,short tate,short pitch)
+{
+	if( m_hPrinter == NULL ) return(-1);
+
+	char cmd[50];
+
+	SetPosition(x,y);
+
+	// 縦横倍率
+	if( yoko < 1 || yoko >12 ) yoko=1;
+	if( tate < 1 || tate >12 ) tate=1;
+
+	if( pitch < 0 || pitch > 99 ) pitch=2;
+
+	memset( cmd, 0, sizeof(cmd));
+	wsprintf( &cmd[strlen(cmd)],"%cP%02d",S_ESC,pitch);
+//	wsprintf( &cmd[strlen(cmd)],"%cP%2d",S_ESC,pitch);
+	SendData(cmd,(int)strlen(cmd) );
+
+	memset( cmd, 0, sizeof(cmd));
+	cmd[strlen(cmd)] = S_ESC;
+	cmd[strlen(cmd)] = 'L';
+	wsprintf( &cmd[strlen(cmd)],"%02d%02d",yoko,tate);
+
+	SendData(cmd,(int)strlen(cmd) );
+
+
+	// 文字サイズ
+	if( size < 0 || size > 4 ) size=0;
+	memset( cmd, 0, sizeof(cmd));
+	cmd[0] = S_ESC;
+	// スムージング機能なし
+	if( size < 3 )
+		wsprintf( &cmd[strlen(cmd)],"X2%d,",size);
+	else
+		wsprintf( &cmd[strlen(cmd)],"X2%d,1",size);
+
+	SendData(cmd,(int)strlen(cmd) );
+
+	return( SendData(str, len) );
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------
+//	int	 DrawKanji( int x,int y,char* str, int len,short size ,short yoko,short tate,short pitch)
+//	タイプ：private
+//	機能　：全半混合漢字文字列印刷（プリンタの設定をS-JISにしておくこと）
+//	引数１：x座標(0.1mm)
+//	引数２：y座標(0.1mm)
+//	引数３：文字列
+//	引数４：文字数
+//	引数５：文字サイズ(0(16*16)-1(24*24))
+//	引数６：横倍率(1-12)
+//	引数７：縦倍率(1-12)
+//	引数７：文字間ピッチ(0-99)
+//---------------------------------------------------------------------------------------------------------------------
+int	 TSatoPrinter::DrawKanji( int x,int y,char* str, int len,short size ,short yoko,short tate,short pitch)
+{
+	if( m_hPrinter == NULL ) return(-1);
+
+	char cmd[50];
+
+	SetPosition(x,y);
+
+	// 縦横倍率
+	if( yoko < 1 || yoko >12 ) yoko=1;
+	if( tate < 1 || tate >12 ) tate=1;
+
+	if( pitch < 0 || pitch > 99 ) pitch=2;
+
+	memset( cmd, 0, sizeof(cmd));
+	wsprintf( &cmd[strlen(cmd)],"%cP%02d",S_ESC,pitch);
+	SendData(cmd,(int)strlen(cmd) );
+
+	memset( cmd, 0, sizeof(cmd));
+	cmd[strlen(cmd)] = S_ESC;
+	cmd[strlen(cmd)] = 'L';
+	wsprintf( &cmd[strlen(cmd)],"%02d%02d",yoko,tate);
+
+	SendData(cmd,(int)strlen(cmd) );
+
+
+	// 文字サイズ
+	if( !size  ) size=5;		// 16*16
+	else size=6;				// 24*24
+	memset( cmd, 0, sizeof(cmd));
+	cmd[0] = S_ESC;
+	wsprintf( &cmd[strlen(cmd)],"K%dC",size);
+
+	SendData(cmd,(int)strlen(cmd) );
+
+	// 漢字の上位ビットと下位ビットの入れ替え
+	unsigned short a,b,i;
+	for( i=0; i< len; i++){
+		// 次の文字は漢字か？
+		if( IsDBCSLeadByteEx(CP_ACP, str[i])==TRUE){
+			b=(unsigned short)str[i];
+			b= b << 8;
+			b= b >> 8;
+			a=(unsigned short)str[++i];
+			a= a << 8;
+			b= a|b;
+			SendData((char*)&b,sizeof(short) );
+		}
+		// 半角の場合はそのまま送る
+		else{
+			SendData(&str[i],1 );
+		}
+	}
+
+	return(0);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	int	 TSatoPrinter::Bar39( int x,int y,int h,char* bcr,BOOL guide,int hiritu,int kakudai);
+//	タイプ：public
+//	機能　：code39ﾊﾞｰｺｰﾄﾞの印字
+//	引数１：x座標(0.1mm)
+//	引数２：y座標(0.1mm)
+//	引数３：ﾊﾞｰｺｰﾄﾞ高さ(0.1mm)
+//	引数４：ﾊﾞｰｺｰﾄﾞ文字列
+//	引数５：文字数
+//	引数６：ガイド文字有無
+//	引数７：文字サイズ(0-4)
+//	引数８：比率 0=1,2(ﾃﾞﾌｫﾙﾄ) 1=1:3, 2=2:5
+//	引数９：横1倍率(1-12)
+//---------------------------------------------------------------------------------------------------------------------
+int	 TSatoPrinter::Bar39( int x,int y,short h,char* bcr, int len, BOOL guide,int hiritu,short kakudai)
+{
+	if( m_hPrinter == NULL ) return(-1);
+
+	int pos;
+	char cmd[30];
+
+	SetPosition(x,y);
+
+	memset( cmd, 0, sizeof(cmd));
+	wsprintf( &cmd[strlen(cmd)],"%cP00",S_ESC);
+	SendData(cmd,(int)strlen(cmd) );
+
+	memset( cmd, 0, sizeof(cmd));
+
+
+	// 比率
+	switch(hiritu){
+		case 1:
+			wsprintf( cmd,"%cB1",S_ESC);
+			break;
+		case 2:
+			wsprintf( cmd,"%cBD1",S_ESC);
+			break;
+		default:
+			wsprintf( cmd,"%cD1",S_ESC);
+	}
+	// 横拡大率
+	if( kakudai < 1 || kakudai >12 ) kakudai =1;
+	// バー高さ
+	pos = (int)((double)h*m_dpm);
+	if( pos<1 || pos > 600 ) pos=20;
+	wsprintf( &cmd[strlen(cmd)], "%02d%03d", kakudai,pos);
+
+	SendData(cmd,(int)strlen(cmd) );
+	return( SendData(bcr, len) );
+
+}
+//---------------------------------------------------------------------------------------------------------------------
+//	int	 TSatoPrinter::Bar39( int x,int y,int h,char* bcr,BOOL guide,int hiritu,int kakudai);
+//	タイプ：public
+//	機能　：code39ﾊﾞｰｺｰﾄﾞの印字
+//	引数１：x座標(0.1mm)
+//	引数２：y座標(0.1mm)
+//	引数３：ﾊﾞｰｺｰﾄﾞ高さ(0.1mm)
+//	引数４：ﾊﾞｰｺｰﾄﾞ文字列
+//	引数５：文字数
+//	引数６：ガイド文字有無
+//	引数７：文字サイズ(0-4)
+//	引数９：横1倍率(1-12)
+//---------------------------------------------------------------------------------------------------------------------
+int	 TSatoPrinter::Bar128( int x,int y,short h,char* bcr, int len, BOOL guide,short kakudai)
+{
+	if( m_hPrinter == NULL ) return(-1);
+
+	int pos;
+	char cmd[30];
+
+	SetPosition(x,y);
+
+	memset( cmd, 0, sizeof(cmd));
+	wsprintf( &cmd[strlen(cmd)],"%cP00",S_ESC);
+	SendData(cmd,(int)strlen(cmd) );
+
+	memset( cmd, 0, sizeof(cmd));
+
+
+	wsprintf( cmd,"%cBG",S_ESC);
+
+	// 横拡大率
+	if( kakudai < 1 || kakudai >12 ) kakudai =1;
+	// バー高さ
+	pos = (int)((double)h*m_dpm);
+	if( pos<1 || pos > 600 ) pos=20;
+	wsprintf( &cmd[strlen(cmd)], "%02d%03d", kakudai,pos);
+
+	SendData(cmd,(int)strlen(cmd) );
+	return( SendData(bcr, len) );
+
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	int TSatoPrinter::DrawFrame(int x,int y,int xlen,int ylen,short linewidth )
+//	タイプ：public
+//	機能　：枠線を引く（回転させている場合は、座標及び長さに注意）
+//	引数１：x座標(0.1mm)
+//	引数２：y座標(0.1mm)
+//	引数３：x方向長さ(0.1mm)
+//	引数４：y方向長さ(0.1mm)
+//	引数５：線の太さ(0.1mm)
+//---------------------------------------------------------------------------------------------------------------------
+int TSatoPrinter::DrawFrame(int x,int y,int xlen,int ylen,short linewidth )
+{
+	if( m_hPrinter == NULL ) return(-1);
+
+	int pos,xl,yl;
+	char cmd[50];
+
+	SetPosition(x,y);
+
+	memset( cmd, 0, sizeof(cmd));
+	pos = (int)((double) linewidth *m_dpm);
+	xl = (int)((double) xlen *m_dpm);
+	yl = (int)((double) ylen *m_dpm);
+	if( pos < 2 || pos >99 ) pos=2;
+	wsprintf( cmd,"%cFW%02d%02dV%04ldH%04ld",S_ESC,pos ,pos,yl,xl );
+	return(SendData(cmd,(int)strlen(cmd) ) );
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	int TSatoPrinter::DrawLine(int x,int y,int len,char direct,short linewidth )
+//	タイプ：public
+//	機能　：罫線を引く（回転させている場合は、座標及び長さに注意）
+//	引数１：x座標(0.1mm)
+//	引数２：y座標(0.1mm)
+//	引数３：長さ(0.1mm)
+//	引数４：方向 'H' or 'V'
+//	引数５：線の太さ(0.1mm)
+//---------------------------------------------------------------------------------------------------------------------
+int TSatoPrinter::DrawLine(int x,int y,int len,char direct,short linewidth )
+{
+	if( m_hPrinter == NULL ) return(-1);
+
+	int pos,l;
+	char cmd[50];
+
+	SetPosition(x,y);
+
+	memset( cmd, 0, sizeof(cmd));
+	memset( cmd, 0, sizeof(cmd));
+
+	pos = (int)((double) linewidth *m_dpm);
+	l = (int)((double) len *m_dpm);
+	if( pos < 2 || pos >99 ) pos=2;
+	wsprintf( cmd,"%cFW%02d%c%04ld",S_ESC,pos ,direct,l );
+	return(SendData(cmd,(int)strlen(cmd) ) );
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	void TSatoPrinter::SetPosition( int x, int y)
+//	タイプ：private
+//	機能　：カレント座標の移動
+//	引数１：x座標(0.1mm)
+//	引数２：y座標(0.1mm)
+//---------------------------------------------------------------------------------------------------------------------
+void TSatoPrinter::SetPosition( int x, int y)
+{
+
+	int pos;
+	char cmd[50];
+
+	// 印字位置送信（垂直）
+	memset( cmd, 0, sizeof(cmd));
+	cmd[0] = S_ESC;
+	cmd[1] = 'V';
+	pos = (int)( (double)y * m_dpm);
+	wsprintf( &cmd[2],"%ld",pos);
+
+	// 印字位置送信（水平）
+	cmd[strlen(cmd)] = S_ESC;
+	cmd[strlen(cmd)] = 'H';
+	pos = (int)( (double)x * m_dpm);
+	wsprintf( &cmd[strlen(cmd)],"%ld",pos);
+
+	SendData(cmd,(int)strlen(cmd) );
+
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//	int  TSatoPrinter::SendData(char *data)
+//	タイプ：private
+//	機能　：ﾃﾞｰﾀをプリンタに送信
+//	引数　：送信文字列
+//---------------------------------------------------------------------------------------------------------------------
+int  TSatoPrinter::SendData(char *data,int len)
+{
+	DWORD	dw;	
+	int stat=0;
+
+	if( m_hPrinter == NULL ) return(-1);
+
+	stat=WritePrinter( m_hPrinter , (LPBYTE)data , (DWORD)len , (LPDWORD)&dw);
+	if(stat==0){
+		return 1;
+	}
+
+	return 0;
+}
+

@@ -1,0 +1,14 @@
+﻿  stdafx.cpp
+  CMelP3E.cpp
+c:\softwarevnn\cmelp3e\cmelp3e\cmelp3e.cpp(6): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+  c:\softwarevnn\cmelp3e\cmelp3e\cmelp3e.cpp(6): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+c:\softwarevnn\cmelp3e\cmelp3e\cmelp3e.cpp(216): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'HANDLE'
+c:\softwarevnn\cmelp3e\cmelp3e\cmelp3e.cpp(639): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'HANDLE'
+c:\softwarevnn\cmelp3e\cmelp3e\cmelp3e.cpp(553): warning C4101: 'buf': unreferenced local variable
+c:\softwarevnn\cmelp3e\cmelp3e\cmelp3e.cpp(1017): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'HANDLE'
+c:\softwarevnn\cmelp3e\cmelp3e\cmelp3e.cpp(1152): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'HANDLE'
+c:\softwarevnn\cmelp3e\cmelp3e\cmelp3e.cpp(1297): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'HANDLE'
+  dllmain.cpp
+     Creating library C:\SoftwareVNN\CMelP3E\Debug\CMelP3E.lib and object C:\SoftwareVNN\CMelP3E\Debug\CMelP3E.exp
+  CMelP3E.vcxproj -> C:\SoftwareVNN\CMelP3E\Debug\CMelP3E.dll
+  CMelP3E.vcxproj -> C:\SoftwareVNN\CMelP3E\Debug\CMelP3E.pdb (Full PDB)

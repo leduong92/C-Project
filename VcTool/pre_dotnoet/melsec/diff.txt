@@ -1,0 +1,1919 @@
+ファイル CMelP4.cpp と CMELP4EX.CPP を比較しています
+***** CMelP4.cpp
+    2:  //
+    3:  //      FileName        :CMelP4.cpp
+    4:  //      Class           :CMelsecP4
+    5:  //                              :Melsec プロトコル４形式通信
+***** CMELP4EX.CPP
+    2:  //
+    3:  //      FileName        :CMelP4Ex.cpp
+    4:  //      Class           :CMelsecP4Ex
+    5:  //                              :Melsec プロトコル４形式通信
+*****
+
+***** CMelP4.cpp
+    6:  //
+    7:  //      作成日          :2001.12.13     Coded by coba
+    8:  //
+***** CMELP4EX.CPP
+    6:  //
+    7:  //      作成日          :2002. 7.16 N.Maeda
+    8:  //
+*****
+
+***** CMelP4.cpp
+   12:  #include <conio.h>
+   13:  #include "CMelP4.h"
+   14:  
+***** CMELP4EX.CPP
+   12:  #include <conio.h>
+   13:  #include "CMelP4Ex.h"
+   14:  
+*****
+
+***** CMelP4.cpp
+   15:  //========================================================================================================
+   16:  //      CMelsecP4::CMelsecP4(void)
+   17:  //      引数　：なし
+***** CMELP4EX.CPP
+   15:  //========================================================================================================
+   16:  //      CMelsecP4Ex::CMelsecP4Ex(void)
+   17:  //      引数　：なし
+*****
+
+***** CMelP4.cpp
+   20:  //========================================================================================================
+   21:  CMelsecP4::CMelsecP4(void)
+   22:  {
+***** CMELP4EX.CPP
+   20:  //========================================================================================================
+   21:  CMelsecP4Ex::CMelsecP4Ex(void)
+   22:  {
+*****
+
+***** CMelP4.cpp
+   26:  //========================================================================================================
+   27:  //      CMelsecP4::~CMelsecP4()
+   28:  //      デストラクタ
+***** CMELP4EX.CPP
+   26:  //========================================================================================================
+   27:  //      CMelsecP4Ex::~CMelsecP4Ex()
+   28:  //      デストラクタ
+*****
+
+***** CMelP4.cpp
+   32:  //========================================================================================================
+   33:  CMelsecP4::~CMelsecP4()
+   34:  {
+***** CMELP4EX.CPP
+   32:  //========================================================================================================
+   33:  CMelsecP4Ex::~CMelsecP4Ex()
+   34:  {
+*****
+
+***** CMelP4.cpp
+   40:  //========================================================================================================
+   41:  //      int CMelsecP4::Init(int portNo,int baudrate,int databit,int stopbit,int parity,int wait);
+   42:  //      type　：private
+***** CMELP4EX.CPP
+   40:  //========================================================================================================
+   41:  //      int CMelsecP4Ex::Init(int portNo,int baudrate,int databit,int stopbit,int parity,int wait);
+   42:  //      type　：private
+*****
+
+***** CMelP4.cpp
+   51:  //========================================================================================================
+   52:  BOOL CMelsecP4::Init(int portNo,int baudrate,int databit,int stopbit,int parity,int wait)
+   53:  {
+***** CMELP4EX.CPP
+   51:  //========================================================================================================
+   52:  BOOL CMelsecP4Ex::Init(int portNo,int baudrate,int databit,int stopbit,int parity,int wait)
+   53:  {
+*****
+
+***** CMelP4.cpp
+   62:          switch( baudrate ){
+   63:                  case 1200:
+***** CMELP4EX.CPP
+   62:          switch( baudrate ){
+   63:                  case 300:
+   64:                          ps.BauRate=CBR_300;                             //1200bps
+   65:                          break;
+   66:                  case 600:
+   67:                          ps.BauRate=CBR_600;                             //1200bps
+   68:                          break;
+   69:                  case 1200:
+*****
+
+***** CMelP4.cpp
+   66:                  case 2400:
+   67:                          ps.BauRate=CBR_2400;                            //1200bps
+   68:                          break;
+***** CMELP4EX.CPP
+   72:                  case 2400:
+   73:                          ps.BauRate=CBR_2400;                            //bps
+   74:                          break;
+*****
+
+***** CMelP4.cpp
+   69:                  case 4800:
+   70:                          ps.BauRate=CBR_4800;                            //1200bps
+   71:                          break;
+***** CMELP4EX.CPP
+   75:                  case 4800:
+   76:                          ps.BauRate=CBR_4800;                            //bps
+   77:                          break;
+   78:                  case 14400:
+   79:                          ps.BauRate=CBR_14400;                           //bps
+   80:                          break;
+*****
+
+***** CMelP4.cpp
+   72:                  case 19200:
+   73:                          ps.BauRate=CBR_19200;                           //1200bps
+   74:                          break;
+***** CMELP4EX.CPP
+   81:                  case 19200:
+   82:                          ps.BauRate=CBR_19200;                           //bps
+   83:                          break;
+   84:                  case 28800:
+   85:                          ps.BauRate=28800;                               //bps
+   86:                          break;
+   87:                  case 38400:
+   88:                          ps.BauRate=CBR_38400;                           //bps
+   89:                          break;
+   90:                  case 57600:
+   91:                          ps.BauRate=CBR_57600;                           //bps
+   92:                          break;
+   93:                  case 115200:
+   94:                          ps.BauRate=CBR_115200;                          //bps
+   95:                          break;
+*****
+
+***** CMelP4.cpp
+  107:                          break;
+  108:                  case 2:                                                                 // 偶数
+  109:                          ps.Parity=EVENPARITY;                           // 奇数パリティ
+  110:                          break;
+***** CMELP4EX.CPP
+  128:                          break;
+  129:                  case 2:                                                                 // 
+  130:                          ps.Parity=EVENPARITY;                           // 偶数パリティ
+  131:                          break;
+*****
+
+***** CMelP4.cpp
+  116:          ps.fBinary = TRUE;
+  117:          ps.fOutxCtsFlow = TRUE; // TRUE or FALSE
+  118:          ps.fOutxDsrFlow = TRUE;         // TRUE or FALSE
+***** CMELP4EX.CPP
+  137:          ps.fBinary = TRUE;
+  138:          ps.fOutxCtsFlow = TRUE;         // TRUE or FALSE
+  139:          ps.fOutxDsrFlow = TRUE;         // TRUE or FALSE
+*****
+
+***** CMelP4.cpp
+  138:  //========================================================================================================
+  139:  //      int CMelsecP4::P4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  140:  //　機能　：プロトコル４形式でワードデータをブロック受信
+***** CMELP4EX.CPP
+  159:  //========================================================================================================
+  160:  //      int CMelsecP4Ex::P4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  161:  //　機能　：プロトコル４形式でワードデータをブロック受信
+*****
+
+***** CMelP4.cpp
+  148:  //========================================================================================================
+  149:  int CMelsecP4::P4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  150:  {
+***** CMELP4EX.CPP
+  169:  //========================================================================================================
+  170:  int CMelsecP4Ex::P4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  171:  {
+*****
+
+***** CMelP4.cpp
+  153:          char data[20],txt[10];
+  154:  
+***** CMELP4EX.CPP
+  174:          char data[20],txt[10];
+  175:          char initcom[5];
+  176:  
+  177:          initcom[0]=4;
+  178:          initcom[1]=0xD;
+  179:          initcom[2]=0xA;
+  180:          initcom[3]=0;
+  181:  
+  182:  
+*****
+
+***** CMelP4.cpp
+  160:          while( retry < 8 ){
+  161:                  //----送信文字列の作成-----
+***** CMELP4EX.CPP
+  188:          while( retry < 8 ){
+  189:                  if( retry ){
+  190:                          TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+  191:                          ret = TRS232C::Write( (BYTE*)initcom, 3 );
+  192:                  }               
+  193:                  //----送信文字列の作成-----
+*****
+
+***** CMelP4.cpp
+  214:          }
+  215:  
+***** CMELP4EX.CPP
+  246:          }
+  247:          if(retry == 8) return(-9);
+  248:  
+*****
+
+***** CMelP4.cpp
+  222:  //========================================================================================================
+  223:  //      int CMelsecP4::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  224:  //　機能　：プロトコル４形式でワードをブロック送信
+***** CMELP4EX.CPP
+  255:  //========================================================================================================
+  256:  //      int CMelsecP4Ex::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  257:  //　機能　：プロトコル４形式でワードをブロック送信
+*****
+
+***** CMelP4.cpp
+  231:  //========================================================================================================
+  232:  int CMelsecP4::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  233:  {
+***** CMELP4EX.CPP
+  264:  //========================================================================================================
+  265:  int CMelsecP4Ex::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  266:  {
+*****
+
+***** CMelP4.cpp
+  236:          char data[20];
+  237:  
+***** CMELP4EX.CPP
+  269:          char data[20];
+  270:          char initcom[5];
+  271:  
+  272:          initcom[0]=4;
+  273:          initcom[1]=0xD;
+  274:          initcom[2]=0xA;
+  275:          initcom[3]=0;
+  276:  
+*****
+
+***** CMelP4.cpp
+  251:          while( retry < 8 ){
+  252:                  // 送信
+***** CMELP4EX.CPP
+  290:          while( retry < 8 ){
+  291:                  if( retry ){
+  292:                          TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+  293:                          ret = TRS232C::Write( (BYTE*)initcom, 3 );
+  294:                  }               
+  295:                  // 送信
+*****
+
+***** CMelP4.cpp
+  258:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  259:                  if( ret ) return(-3);
+  260:  
+  261:                  // 残りのバイト数をコマンド別に決める
+***** CMELP4EX.CPP
+  301:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  302:                  if( ret ){
+  303:                          if( retry++ < 8 )continue;
+  304:                          return(-3);
+  305:                  }
+  306:                  // 残りのバイト数をコマンド別に決める
+*****
+
+***** CMelP4.cpp
+  263:                  else if( data[0] == NAK )  len = 8;     // NAKの場合
+  264:                  else return(-4);                                                // エラーだ。
+  265:  
+  266:                  // 残りのバイト数を受信する
+***** CMELP4EX.CPP
+  308:                  else if( data[0] == NAK )  len = 8;     // NAKの場合
+  309:                  else{
+  310:                          if( retry++ < 8 )continue;
+  311:                          return(-4);                                             // エラーだ。
+  312:                  }
+  313:                  // 残りのバイト数を受信する
+*****
+
+***** CMelP4.cpp
+  267:                  ret = Receive( data, sizeof(data), len );
+  268:                  if( ret ) return(-5);
+  269:  
+***** CMELP4EX.CPP
+  314:                  ret = Receive( data, sizeof(data), len );
+  315:                  if( ret ){
+  316:                          if( retry++ < 8 )continue;
+  317:                          return(-5);
+  318:                  }
+  319:  
+*****
+
+***** CMelP4.cpp
+  275:          }
+  276:          if( retry>=8) return(-9);
+  277:          return(0);
+***** CMELP4EX.CPP
+  325:          }
+  326:          return(0);
+*****
+
+***** CMelP4.cpp
+  280:  //========================================================================================================
+  281:  //      int CMelsecP4::P4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  282:  //　機能　：プロトコル４形式でワードデータをブロック受信。拡張デバイス用
+  283:  //      引数１：受信バッファ
+  284:  //      引数２：受信バッファサイズ
+  285:  //      引数３：局番
+  286:  //      引数４：PC局番
+  287:  //      引数５：受信先頭アドレス
+  288:  //      引数６：受信ブロック数(max64)
+  289:  //      type　：public
+  290:  //========================================================================================================
+  291:  int CMelsecP4::P4ReadWEx( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  292:  {
+***** CMELP4EX.CPP
+  329:  //========================================================================================================
+  330:  //      int CMelsecP4Ex::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  331:  //　機能　：プロトコル４形式でワードをブロック送信
+  332:  //      type　：private
+  333:  //      引数１：局番
+  334:  //      引数２：PC局番
+  335:  //      引数３：送信先頭アドレス
+  336:  //      引数４：送信ブロック数(max64)
+  337:  //      引数５：送信データ
+  338:  //========================================================================================================
+  339:  int CMelsecP4Ex::P4Send( char* station, char* pcstation,char* command,char* addr, short counts, char* msg)
+  340:  {
+*****
+
+***** CMelP4.cpp
+  293:          int ret,len;
+  294:          int retry=0,sum;
+  295:          char data[20],txt[10];
+  296:  
+  297:          if( m_fOpen == FALSE ) return(-1);
+  298:          if( counts <1 || counts > 64 ) return(-2);
+  299:  
+  300:          memset( data, 0, sizeof(data));
+  301:          // 送信ループ
+  302:          while( retry < 8 ){
+  303:                  //----送信文字列の作成-----
+  304:                  MakeCmd( m_buf, sizeof(m_buf), station,pcstation, "QR",addr,counts,"");
+  305:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+***** CMELP4EX.CPP
+  341:          int ret,len;
+  342:          int retry=0;
+  343:          char data[20];
+  344:          char initcom[5];
+  345:  
+  346:          initcom[0]=4;
+  347:          initcom[1]=0xD;
+  348:          initcom[2]=0xA;
+  349:          initcom[3]=0;
+  350:  
+  351:          // 未オープンエラー
+  352:          if( m_fOpen == FALSE ) return(-1);
+  353:  //      if( counts <0 || counts > 64 ) return(-2);
+  354:          if( counts <0 ) return(-2);
+  355:  
+  356:          // 長さオーバー
+  357:          if( strlen(addr)+strlen(msg) + P4_HEADLEN+2 >= sizeof(m_buf) ) return(-10);
+  358:  
+  359:  //      if( counts*4 != (int)strlen(msg) ) return(-11);
+  360:  
+  361:          // 送信文字列の作成
+  362:          MakeCmd( m_buf, sizeof(m_buf), station,pcstation, command,addr,counts,msg);
+  363:  
+  364:          // semd-loop
+  365:          while( retry < 8 ){
+  366:                  if( retry ){
+  367:                          TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+  368:                          ret = TRS232C::Write( (BYTE*)initcom, 3 );
+  369:                  }               
+  370:                  // 送信
+  371:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+*****
+
+***** CMelP4.cpp
+  306:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  307:  //intf("\nretry=%d,%s",retry,m_buf);
+  308:  
+  309:                  //-----結果受信------
+  310:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してSTX or NAKを調べる
+  311:                  if( ret ) return(-3);
+  312:  
+  313:                  // 残りの処理数をコマンド別に決める
+  314:                  //-----STXの場合(data到着)------
+  315:                  if( data[0] == STX ){
+  316:                          // ETXになるまで受信を続ける
+  317:                          len =0;
+  318:                          memset( m_buf, 0, sizeof(m_buf) );
+  319:                          while( data[0] != ETX ){
+  320:                                  ret = Receive( data, sizeof(data), 1 );                 // 残りのバイト数を受信する
+  321:                                  if( ret ) return(-4);                                                   // エラー
+  322:                                  m_buf[len] = data[0];                                                   // バッファにため込む
+  323:                                  if( ++len == sizeof(m_buf) ) return(-5);                                                // バッ
+  324:  tァオーバーフロー
+  325:                          }
+  326:  
+  327:                          // 残り(4byte)を受信
+  328:                          ret = Receive( data, sizeof(data), 4 );
+  329:                          if( ret ) return(-6);                                                   // エラー
+  330:  
+  331:                          // サムチェックを比較
+  332:                          sum = GetCheckSum( m_buf );
+  333:                          wsprintf(txt, "%02X", sum);
+  334:  
+  335:                          // OKの場合はACKを返して正常終了
+  336:                          if( !memcmp( txt, data, 2 ) ){
+  337:                                  Answer(ACK,station,pcstation);
+  338:                                  break;
+  339:                          }
+  340:                          // NGの時はNAKを返す
+  341:                          Answer(NAK,station,pcstation);
+  342:                          retry++;                                                                                // ﾘﾄﾗｲする
+  343:                          continue;
+  344:                  }
+  345:  
+  346:                  //-----NAKの場合------
+  347:                  else if( data[0] == NAK ){
+  348:                          ret = Receive( data, sizeof(data), 8 );                 // 残りのバイト数を受信する
+  349:                          if( ret ) return(-7);
+  350:                          retry++;                                                                                // ﾘﾄﾗｲする
+  351:                          continue;
+  352:                  }
+  353:  
+  354:                  //----- エラーだ。-------
+  355:                  else return(-8);
+  356:          }
+  357:  
+  358:          if( retry>=8) return(-9);
+  359:  
+  360:          // 受信データをバッファにｺﾋﾟｰする
+  361:          memcpy( buf, m_buf+4,(int)(strlen(m_buf+4)-1) > bufsize ? bufsize:strlen(m_buf+4)-1);
+  362:  
+  363:          return(0);
+***** CMELP4EX.CPP
+  372:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  373:                  //if(ret !=strlen(buf) ) return(-3);
+  374:  
+  375:                  // 結果受信
+  376:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  377:                  if( ret ){
+  378:                          if( retry++ < 8 )continue;
+  379:                          return(-3);
+  380:                  }
+  381:                  // 残りのバイト数をコマンド別に決める
+  382:                  if( data[0] == ACK )  len = 6 ;         // ACKの場合
+  383:                  else if( data[0] == NAK )  len = 8;     // NAKの場合
+  384:                  else{
+  385:                          if( retry++ < 8 )continue;
+  386:                          return(-4);                                             // エラーだ。
+  387:                  }
+  388:                  // 残りのバイト数を受信する
+  389:                  ret = Receive( data, sizeof(data), len );
+  390:                  if( ret ){
+  391:                          if( retry++ < 8 )continue;
+  392:                          return(-5);
+  393:                  }
+  394:                  // NAKの場合はエラーとしてﾘﾄﾗｲする
+  395:                  if( len == 8 ) retry++;
+  396:  
+  397:                  // ACKの場合はOK
+  398:                  else break;
+  399:          }
+  400:          return(0);
+*****
+
+***** CMelP4.cpp
+  365:  
+  366:  
+  367:  //========================================================================================================
+***** CMELP4EX.CPP
+  402:  
+  403:  /*
+  404:  //========================================================================================================
+*****
+
+***** CMelP4.cpp
+  376:  //========================================================================================================
+  377:  int CMelsecP4::P4WriteWEx( char* station, char* pcstation,char* addr, short counts, char* msg)
+  378:  {
+***** CMELP4EX.CPP
+  413:  //========================================================================================================
+  414:  int CMelsecP4Ex::P4WriteWExEW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  415:  {
+*****
+
+***** CMelP4.cpp
+  392:          // 送信文字列の作成
+  393:          MakeCmd( m_buf, sizeof(m_buf), station,pcstation, "QW",addr,counts,msg);
+  394:  
+***** CMELP4EX.CPP
+  429:          // 送信文字列の作成
+  430:          MakeCmd( m_buf, sizeof(m_buf), station,pcstation, "EW",addr,counts,msg);
+  431:  
+*****
+
+***** CMelP4.cpp
+  423:  }
+  424:  
+***** CMELP4EX.CPP
+  460:  }
+  461:  */
+  462:  
+  463:  
+*****
+
+***** CMelP4.cpp
+  425:  //========================================================================================================
+  426:  //      int P4WriteREx( char* station, char* pcstation,char* addr, short counts, char* msg);
+  427:  //　機能　：プロトコル４形式でワードデータを拡張ファイルレジスタに書き込み
+  428:  //      type　：private
+  429:  //      引数１：局番
+  430:  //      引数２：PC局番
+  431:  //      引数３：送信先頭アドレス(nnnnnn,7桁, ex "0012345")
+  432:  //      引数４：送信ブロック数(max64)
+  433:  //      引数５：送信データ
+  434:  //========================================================================================================
+  435:  int CMelsecP4::P4WriteREx( char* station, char* pcstation,char* addr, short counts, char* msg)
+  436:  {
+***** CMELP4EX.CPP
+  464:  //========================================================================================================
+  465:  //      int CMelsecP4Ex::P4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  466:  //　機能　：プロトコル４形式でワードデータをブロック受信
+  467:  //      引数１：受信バッファ
+  468:  //      引数２：受信バッファサイズ
+  469:  //      引数３：局番
+  470:  //      引数４：PC局番
+  471:  //      引数５：受信先頭アドレス
+  472:  //      引数６：受信ブロック数(max64)
+  473:  //      type　：public
+  474:  //========================================================================================================
+  475:  int CMelsecP4Ex::P2C4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  476:  {
+*****
+
+***** CMelP4.cpp
+  438:          int retry=0;
+  439:          char data[20];
+  440:  
+***** CMELP4EX.CPP
+  478:          int retry=0;
+  479:          char data[4096];
+  480:          char lsum[4096];
+  481:          char initcom[5];
+  482:          char st;
+  483:          char sumt[16];
+  484:  
+  485:          initcom[0]=4;
+  486:          initcom[1]=0xD;
+  487:          initcom[2]=0xA;
+  488:          initcom[3]=0;
+  489:  
+*****
+
+***** CMelP4.cpp
+  442:          if( m_fOpen == FALSE ) return(-1);
+  443:          if( counts <1 || counts > 64 ) return(-2);
+  444:  
+***** CMELP4EX.CPP
+  491:          if( m_fOpen == FALSE ) return(-1);
+  492:          if( counts <0 || counts > 960 ) return(-2);
+  493:  
+*****
+
+***** CMelP4.cpp
+  445:          // 長さオーバー
+  446:          if( strlen(addr)+strlen(msg) + P4_HEADLEN >= sizeof(m_buf) ) return(-10);
+  447:  
+  448:          if( counts*4 != (int)strlen(msg) ) return(-11);
+  449:  
+  450:          // 送信文字列の作成
+  451:          MakeCmd( m_buf, sizeof(m_buf), station,pcstation, "NW",addr,counts,msg);
+  452:  
+***** CMELP4EX.CPP
+  494:          // 長さオーバー
+  495:  //      if( strlen(addr)+strlen(msg) + P4_HEADLEN >= sizeof(m_buf) ) return(-10);
+  496:  //
+  497:  //      if( counts*4 != (int)strlen(msg) ) return(-11);
+  498:  
+  499:          // 送信文字列の作成(2C)
+  500:          MakeCmd2C( m_buf, sizeof(m_buf), station,pcstation, "2",addr,counts,"");
+  501:  
+*****
+
+***** CMelP4.cpp
+  454:          while( retry < 8 ){
+  455:                  // 送信
+***** CMELP4EX.CPP
+  503:          while( retry < 8 ){
+  504:                  if( retry ){
+  505:                          TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+  506:                          ret = TRS232C::Write( (BYTE*)initcom, 3 );
+  507:                  }               
+  508:                  // 送信
+*****
+
+***** CMelP4.cpp
+  461:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  462:                  if( ret ) return(-3);
+  463:  
+  464:                  // 残りのバイト数をコマンド別に決める
+  465:                  if( data[0] == ACK )  len = 6 ;         // ACKの場合
+  466:                  else if( data[0] == NAK )  len = 8;     // NAKの場合
+  467:                  else return(-4);                                                // エラーだ。
+  468:  
+  469:                  // 残りのバイト数を受信する
+***** CMELP4EX.CPP
+  514:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  515:                  if( ret ){
+  516:                          if( retry++ < 8 )continue;
+  517:                          return(-3);
+  518:                  }
+  519:                  // 残りのバイト数をコマンド別に決める
+  520:                  st=data[0];
+  521:                  if( data[0] == STX )len = counts*4+9;   // STXの場合
+  522:                  else if( data[0] == NAK )  len = 12;    // NAKの場合
+  523:                  else{
+  524:                          if( retry++ < 8 )continue;
+  525:                          return(-4);                                             // エラーだ。
+  526:                  }
+  527:                  // 残りのバイト数を受信する
+*****
+
+***** CMelP4.cpp
+  470:                  ret = Receive( data, sizeof(data), len );
+  471:                  if( ret ) return(-5);
+  472:  
+***** CMELP4EX.CPP
+  528:                  ret = Receive( data, sizeof(data), len );
+  529:                  if( ret ){
+  530:                          if( retry++ < 8 )continue;
+  531:                          return(-5);
+  532:                  }
+  533:                  if( st==STX ){
+  534:                          memset(lsum,0,sizeof(lsum));
+  535:                          memcpy(lsum,data,len-2);
+  536:                          sprintf(sumt,"%02X",GetCheckSum(lsum));
+  537:                  }
+  538:  
+*****
+
+***** CMelP4.cpp
+  473:                  // NAKの場合はエラーとしてﾘﾄﾗｲする
+  474:                  if( len == 8 ) retry++;
+  475:  
+***** CMELP4EX.CPP
+  539:                  // NAKの場合はエラーとしてﾘﾄﾗｲする
+  540:                  // サムチェックエラーも同じ処理
+  541:                  if( st == NAK || memcmp(sumt,data+len-2,2) ) retry++;
+  542:  
+*****
+
+***** CMelP4.cpp
+  478:          }
+  479:          if( retry>=8) return(-9);
+  480:          return(0);
+  481:  }
+  482:  
+  483:  //========================================================================================================
+  484:  //      int CMelsecP4Ex::P4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  485:  //　機能　：プロトコル４形式でワードデータをブロック受信
+  486:  //      引数１：受信バッファ
+  487:  //      引数２：受信バッファサイズ
+  488:  //      引数３：局番
+  489:  //      引数４：PC局番
+  490:  //      引数５：受信先頭アドレス
+  491:  //      引数６：受信ブロック数(max64)
+  492:  //      type　：public
+  493:  //========================================================================================================
+  494:  int CMelsecP4::P2C4ReadW( char* buf,int bufsize,char* station,char* pcstation,char* addr, short counts)
+  495:  {
+  496:          int ret,len;
+  497:          int retry=0;
+  498:          char data[4096];
+  499:          char lsum[4096];
+  500:          char initcom[5];
+  501:          char st;
+  502:          char sumt[16];
+  503:  
+  504:          initcom[0]=4;
+  505:          initcom[1]=0xD;
+  506:          initcom[2]=0xA;
+  507:          initcom[3]=0;
+  508:  
+  509:          // 未オープンエラー
+  510:          if( m_fOpen == FALSE ) return(-1);
+***** CMELP4EX.CPP
+  545:          }
+  546:          // 受信データをバッファにｺﾋﾟｰする
+  547:          memcpy( buf, lsum+6,(int)(strlen(lsum+6)-1) > bufsize ? bufsize:strlen(lsum+6)-1);
+  548:  
+  549:          return(0);
+  550:  
+  551:          
+  552:  /*
+  553:          if( m_fOpen == FALSE ) return(-1);
+*****
+
+***** CMelP4.cpp
+  512:  
+  513:          // 長さオーバー
+  514:  //      if( strlen(addr)+strlen(msg) + P4_HEADLEN >= sizeof(m_buf) ) return(-10);
+  515:  //
+  516:  //      if( counts*4 != (int)strlen(msg) ) return(-11);
+  517:  
+  518:          // 送信文字列の作成(2C)
+  519:          MakeCmd2C( m_buf, sizeof(m_buf), station,pcstation, "2",addr,counts,"");
+  520:  
+  521:          // semd-loop
+  522:          while( retry < 8 ){
+***** CMELP4EX.CPP
+  555:  
+  556:          memset( data, 0, sizeof(data));
+  557:          // 送信ループ
+  558:          while( retry < 8 ){
+*****
+
+***** CMelP4.cpp
+  526:                  }               
+  527:                  // 送信
+  528:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+***** CMELP4EX.CPP
+  562:                  }               
+  563:                  //----送信文字列の作成-----
+  564:                  MakeCmd2C( m_buf, sizeof(m_buf), station,pcstation, "2",addr,counts,"");
+  565:  
+  566:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+*****
+
+***** CMelP4.cpp
+  529:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  530:                  //if(ret !=strlen(buf) ) return(-3);
+  531:  
+  532:                  // 結果受信
+  533:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  534:                  if( ret ){
+***** CMELP4EX.CPP
+  567:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  568:  
+  569:                  //-----結果受信------
+  570:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してSTX or NAKを調べる
+  571:                  if( ret ){
+*****
+
+***** CMelP4.cpp
+  537:                  }
+  538:                  // 残りのバイト数をコマンド別に決める
+  539:                  st=data[0];
+  540:                  if( data[0] == STX )len = counts*4+9;   // STXの場合
+  541:                  else if( data[0] == NAK )  len = 12;    // NAKの場合
+  542:                  else{
+  543:                          if( retry++ < 8 )continue;
+  544:                          return(-4);                                             // エラーだ。
+  545:                  }
+  546:                  // 残りのバイト数を受信する
+  547:                  ret = Receive( data, sizeof(data), len );
+  548:                  if( ret ){
+  549:                          if( retry++ < 8 )continue;
+  550:                          return(-5);
+  551:                  }
+  552:                  if( st==STX ){
+  553:                          memset(lsum,0,sizeof(lsum));
+  554:                          memcpy(lsum,data,len-2);
+  555:                          sprintf(sumt,"%02X",GetCheckSum(lsum));
+  556:                  }
+***** CMELP4EX.CPP
+  574:                  }
+  575:                  // 残りの処理数をコマンド別に決める
+  576:                  //-----STXの場合(data到着)------
+  577:                  if( data[0] == STX ){
+  578:                          // ETXになるまで受信を続ける
+  579:                          len =0;
+  580:                          memset( m_buf, 0, sizeof(m_buf) );
+  581:                          while( data[0] != ETX ){
+  582:                                  ret = Receive( data, sizeof(data), 1 );                 // 残りのバイト数を受信する
+  583:                                  if( ret ){
+  584:                                          if( retry++ < 8 )continue;
+  585:                                          return(-4);                                                     // エラー
+  586:                                  }
+  587:                                  m_buf[len] = data[0];                                                   // バッファにため込む
+  588:                                  if( ++len == sizeof(m_buf) ){
+  589:                                          if( retry++ < 8 )continue;
+  590:                                          return(-5);                                             // バッファオーバーフロー
+  591:                                  }
+  592:                          }
+  593:  
+  594:                          // 残り(4byte)を受信
+  595:                          ret = Receive( data, sizeof(data), 4 );
+  596:                          if( ret ){
+  597:                                  if( retry++ < 8 )continue;
+  598:                                  return(-6);                                                     // エラー
+  599:                          }
+  600:  
+  601:                          // サムチェックを比較
+  602:                          sum = GetCheckSum( m_buf );
+  603:                          wsprintf(txt, "%02X", sum);
+  604:  
+  605:                          // OKの場合はACKを返して正常終了
+  606:                          if( !memcmp( txt, data, 2 ) ){
+  607:                                  Answer(ACK,station,pcstation);
+  608:                                  break;
+  609:                          }
+  610:                          // NGの時はNAKを返す
+  611:                          Answer(NAK,station,pcstation);
+  612:                          retry++;                                                                                // ﾘﾄﾗｲする
+  613:                          continue;
+  614:                  }
+*****
+
+***** CMelP4.cpp
+  557:  
+  558:                  // NAKの場合はエラーとしてﾘﾄﾗｲする
+  559:                  // サムチェックエラーも同じ処理
+  560:                  if( st == NAK || memcmp(sumt,data+len-2,2) ) retry++;
+  561:  
+  562:                  // ACKの場合はOK
+  563:                  else break;
+  564:          }
+  565:          // 受信データをバッファにｺﾋﾟｰする
+  566:          memcpy( buf, lsum+6,(int)(strlen(lsum+6)-1) > bufsize ? bufsize:strlen(lsum+6)-1);
+  567:  
+***** CMELP4EX.CPP
+  615:  
+  616:                  //-----NAKの場合------
+  617:                  else if( data[0] == NAK ){
+  618:                          ret = Receive( data, sizeof(data), 8 );                 // 残りのバイト数を受信する
+  619:                          if( ret ){
+  620:                                  if( retry++ < 8 )continue;
+  621:                                  return(-7);
+  622:                          }
+  623:                          retry++;                                                                                // ﾘﾄﾗｲする
+  624:                          continue;
+  625:                  }
+  626:  
+  627:                  //----- エラーだ。-------
+  628:                  else return(-8);
+  629:          }
+  630:          if(retry == 8) return(-9);
+  631:  
+  632:          // 受信データをバッファにｺﾋﾟｰする
+  633:          memcpy( buf, m_buf+4,(int)(strlen(m_buf+4)-1) > bufsize ? bufsize:strlen(m_buf+4)-1);
+  634:  
+*****
+
+***** CMelP4.cpp
+  568:          return(0);
+  569:  
+  570:          
+  571:  /*
+  572:          if( m_fOpen == FALSE ) return(-1);
+***** CMELP4EX.CPP
+  635:          return(0);
+  636:  */
+  637:  }
+  638:  
+  639:  //========================================================================================================
+  640:  //      int CMelsecP4Ex::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  641:  //　機能　：プロトコル４形式でワードをブロック送信
+  642:  //      type　：private
+  643:  //      引数１：局番
+  644:  //      引数２：PC局番
+  645:  //      引数３：送信先頭アドレス
+  646:  //      引数４：送信ブロック数(max64)
+  647:  //      引数５：送信データ
+  648:  //========================================================================================================
+  649:  int CMelsecP4Ex::P2C4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  650:  {
+  651:          int ret,len;
+  652:          int retry=0;
+  653:          char data[20];
+  654:          char initcom[5];
+  655:  
+  656:          initcom[0]=4;
+  657:          initcom[1]=0xD;
+  658:          initcom[2]=0xA;
+  659:          initcom[3]=0;
+  660:  
+  661:  
+  662:          // 未オープンエラー
+  663:          if( m_fOpen == FALSE ) return(-1);
+*****
+
+***** CMelP4.cpp
+  574:  
+  575:          memset( data, 0, sizeof(data));
+  576:          // 送信ループ
+  577:          while( retry < 8 ){
+***** CMELP4EX.CPP
+  665:  
+  666:          // 長さオーバー
+  667:          if( strlen(addr)+strlen(msg) + P4_HEADLEN >= sizeof(m_buf) ) return(-10);
+  668:  
+  669:          if( counts*4 != (int)strlen(msg) ) return(-11);
+  670:  
+  671:          // 送信文字列の作成(2C)
+  672:          MakeCmd2C( m_buf, sizeof(m_buf), station,pcstation, "4",addr,counts,msg);
+  673:  
+  674:          // semd-loop
+  675:          while( retry < 8 ){
+*****
+
+***** CMelP4.cpp
+  581:                  }               
+  582:                  //----送信文字列の作成-----
+  583:                  MakeCmd2C( m_buf, sizeof(m_buf), station,pcstation, "2",addr,counts,"");
+  584:  
+  585:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+***** CMELP4EX.CPP
+  679:                  }               
+  680:                  // 送信
+  681:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+*****
+
+***** CMelP4.cpp
+  586:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  587:  
+  588:                  //-----結果受信------
+  589:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してSTX or NAKを調べる
+  590:                  if( ret ){
+***** CMELP4EX.CPP
+  682:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  683:                  //if(ret !=strlen(buf) ) return(-3);
+  684:  
+  685:                  // 結果受信
+  686:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  687:                  if( ret ){
+*****
+
+***** CMelP4.cpp
+  593:                  }
+  594:                  // 残りの処理数をコマンド別に決める
+***** CMELP4EX.CPP
+  690:                  }
+  691:                  // 残りのバイト数をコマンド別に決める
+  692:                  if( data[0] == ACK )  len = 6 ;         // ACKの場合
+  693:                  else if( data[0] == NAK )  len = 12;    // NAKの場合
+  694:                  else{
+  695:                          if( retry++ < 8 )continue;
+  696:                          return(-4);                                             // エラーだ。
+  697:                  }
+  698:                  // 残りのバイト数を受信する
+  699:                  ret = Receive( data, sizeof(data), len );
+  700:                  if( ret ){
+  701:                          if( retry++ < 8 )continue;
+  702:                          return(-5);
+  703:                  }
+  704:                  // NAKの場合はエラーとしてﾘﾄﾗｲする
+  705:                  if( len == 8 ) retry++;
+  706:  
+  707:                  // ACKの場合はOK
+  708:                  else break;
+  709:          }
+  710:          return(0);
+  711:  }
+  712:  
+  713:  //========================================================================================================
+  714:  //      int CMelsecP4Ex::P4ReadB( char* station,char* pcstation,char* addr)
+  715:  //      type　：public
+  716:  //　機能　：プロトコル４形式でビットデータを１デバイス受信
+  717:  //      引数３：局番
+  718:  //      引数４：PC局番
+  719:  //      引数５：受信先頭アドレス
+  720:  //  戻り値：0=OFF,1=ON,0未満=エラー
+  721:  //========================================================================================================
+  722:  int CMelsecP4Ex::P4ReadB( char* station,char* pcstation,char* addr)
+  723:  {
+  724:          int ret,len;
+  725:          int retry=0,sum;
+  726:          char data[20],txt[10];
+  727:          char buf;
+  728:  
+  729:          if( m_fOpen == FALSE ) return(-1);
+  730:  
+  731:          memset( data, 0, sizeof(data));
+  732:          // 送信ループ
+  733:          while( retry < 8 ){
+  734:                  //----送信文字列の作成-----
+  735:                  MakeCmd( m_buf, sizeof(m_buf), station,pcstation, "BR",addr,8,"");
+  736:  
+  737:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+  738:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  739:  
+  740:                  //-----結果受信------
+  741:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してSTX or NAKを調べる
+  742:                  if( ret ) return(-3);
+  743:  
+  744:                  // 残りの処理数をコマンド別に決める
+*****
+
+***** CMelP4.cpp
+  601:                                  ret = Receive( data, sizeof(data), 1 );                 // 残りのバイト数を受信する
+  602:                                  if( ret ){
+  603:                                          if( retry++ < 8 )continue;
+  604:                                          return(-4);                                                     // エラー
+  605:                                  }
+  606:                                  m_buf[len] = data[0];                                                   // バッファにため込む
+  607:                                  if( ++len == sizeof(m_buf) ){
+  608:                                          if( retry++ < 8 )continue;
+  609:                                          return(-5);                                             // バッファオーバーフロー
+  610:                                  }
+  611:                          }
+***** CMELP4EX.CPP
+  751:                                  ret = Receive( data, sizeof(data), 1 );                 // 残りのバイト数を受信する
+  752:                                  if( ret ) return(-4);                                                   // エラー
+  753:                                  m_buf[len] = data[0];                                                   // バッファにため込む
+  754:                                  if( ++len == sizeof(m_buf) ) return(-5);                                                // バッ
+  755:  tァオーバーフロー
+  756:                          }
+*****
+
+***** CMelP4.cpp
+  614:                          ret = Receive( data, sizeof(data), 4 );
+  615:                          if( ret ){
+  616:                                  if( retry++ < 8 )continue;
+  617:                                  return(-6);                                                     // エラー
+  618:                          }
+  619:  
+***** CMELP4EX.CPP
+  759:                          ret = Receive( data, sizeof(data), 4 );
+  760:                          if( ret ) return(-6);                                                   // エラー
+  761:  
+*****
+
+***** CMelP4.cpp
+  637:                          ret = Receive( data, sizeof(data), 8 );                 // 残りのバイト数を受信する
+  638:                          if( ret ){
+  639:                                  if( retry++ < 8 )continue;
+  640:                                  return(-7);
+  641:                          }
+  642:                          retry++;                                                                                // ﾘﾄﾗｲする
+***** CMELP4EX.CPP
+  779:                          ret = Receive( data, sizeof(data), 8 );                 // 残りのバイト数を受信する
+  780:                          if( ret ) return(-7);
+  781:                          retry++;                                                                                // ﾘﾄﾗｲする
+*****
+
+***** CMelP4.cpp
+  648:          }
+  649:          if(retry == 8) return(-9);
+  650:  
+***** CMELP4EX.CPP
+  787:          }
+  788:  
+*****
+
+***** CMelP4.cpp
+  651:          // 受信データをバッファにｺﾋﾟｰする
+  652:          memcpy( buf, m_buf+4,(int)(strlen(m_buf+4)-1) > bufsize ? bufsize:strlen(m_buf+4)-1);
+  653:  
+  654:          return(0);
+  655:  */
+  656:  }
+  657:  
+  658:  //========================================================================================================
+***** CMELP4EX.CPP
+  789:          // 受信データをバッファにｺﾋﾟｰする
+  790:          buf=m_buf[4];
+  791:  
+  792:          return(buf-0x30);
+  793:  }
+  794:  //========================================================================================================
+*****
+
+***** CMelP4.cpp
+  659:  //      int CMelsecP4Ex::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  660:  //　機能　：プロトコル４形式でワードをブロック送信
+  661:  //      type　：private
+***** CMELP4EX.CPP
+  795:  //      int CMelsecP4Ex::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  796:  //　機能　：プロトコル４形式でビットデバイス(1点)をON/OFF
+  797:  //      type　：private
+*****
+
+***** CMelP4.cpp
+  663:  //      引数２：PC局番
+  664:  //      引数３：送信先頭アドレス
+  665:  //      引数４：送信ブロック数(max64)
+  666:  //      引数５：送信データ
+  667:  //========================================================================================================
+  668:  int CMelsecP4::P2C4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  669:  {
+***** CMELP4EX.CPP
+  799:  //      引数２：PC局番
+  800:  //      引数３：送信アドレス
+  801:  //      引数５：送信データ 0=OFF,それ以外=ON
+  802:  //      戻り値：0.=成功 それ以外=エラー
+  803:  //========================================================================================================
+  804:  int CMelsecP4Ex::P4WriteB( char* station, char* pcstation,char* addr, int onoff)
+  805:  {
+*****
+
+***** CMelP4.cpp
+  672:          char data[20];
+  673:          char initcom[5];
+  674:  
+  675:          initcom[0]=4;
+  676:          initcom[1]=0xD;
+  677:          initcom[2]=0xA;
+  678:          initcom[3]=0;
+  679:  
+  680:  
+***** CMELP4EX.CPP
+  808:          char data[20];
+  809:          char send[10];
+  810:  
+*****
+
+***** CMelP4.cpp
+  682:          if( m_fOpen == FALSE ) return(-1);
+  683:          if( counts <0 || counts > 960 ) return(-2);
+  684:  
+  685:          // 長さオーバー
+  686:          if( strlen(addr)+strlen(msg) + P4_HEADLEN >= sizeof(m_buf) ) return(-10);
+  687:  
+  688:          if( counts*4 != (int)strlen(msg) ) return(-11);
+  689:  
+  690:          // 送信文字列の作成(2C)
+  691:          MakeCmd2C( m_buf, sizeof(m_buf), station,pcstation, "4",addr,counts,msg);
+  692:  
+***** CMELP4EX.CPP
+  812:          if( m_fOpen == FALSE ) return(-1);
+  813:  
+  814:          // 送信文字列の作成
+  815:          if( !onoff ) strcpy(send,"0\0");
+  816:          else strcpy(send,"1\0");                                // off
+  817:  
+  818:          MakeCmd( m_buf, sizeof(m_buf), station,pcstation, "BW",addr,1,send);
+  819:  
+*****
+
+***** CMelP4.cpp
+  694:          while( retry < 8 ){
+  695:                  if( retry ){
+  696:                          TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+  697:                          ret = TRS232C::Write( (BYTE*)initcom, 3 );
+  698:                  }               
+  699:                  // 送信
+***** CMELP4EX.CPP
+  821:          while( retry < 8 ){
+  822:                  // 送信
+*****
+
+***** CMelP4.cpp
+  705:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  706:                  if( ret ){
+  707:                          if( retry++ < 8 )continue;
+  708:                          return(-3);
+  709:                  }
+  710:                  // 残りのバイト数をコマンド別に決める
+***** CMELP4EX.CPP
+  828:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  829:                  if( ret ) return(-3);
+  830:  
+  831:                  // 残りのバイト数をコマンド別に決める
+*****
+
+***** CMelP4.cpp
+  711:                  if( data[0] == ACK )  len = 6 ;         // ACKの場合
+  712:                  else if( data[0] == NAK )  len = 12;    // NAKの場合
+  713:                  else{
+  714:                          if( retry++ < 8 )continue;
+  715:                          return(-4);                                             // エラーだ。
+  716:                  }
+  717:                  // 残りのバイト数を受信する
+***** CMELP4EX.CPP
+  832:                  if( data[0] == ACK )  len = 6 ;         // ACKの場合
+  833:                  else if( data[0] == NAK )  len = 8;     // NAKの場合
+  834:                  else return(-4);                                                // エラーだ。
+  835:  
+  836:                  // 残りのバイト数を受信する
+*****
+
+***** CMelP4.cpp
+  718:                  ret = Receive( data, sizeof(data), len );
+  719:                  if( ret ){
+  720:                          if( retry++ < 8 )continue;
+  721:                          return(-5);
+  722:                  }
+  723:                  // NAKの場合はエラーとしてﾘﾄﾗｲする
+***** CMELP4EX.CPP
+  837:                  ret = Receive( data, sizeof(data), len );
+  838:                  if( ret ) return(-5);
+  839:  
+  840:                  // NAKの場合はエラーとしてﾘﾄﾗｲする
+*****
+
+***** CMelP4.cpp
+  732:  //========================================================================================================
+  733:  //      int CMelsecP4::P4ReadB( char* station,char* pcstation,char* addr)
+  734:  //      type　：public
+  735:  //　機能　：プロトコル４形式でビットデータを１デバイス受信
+  736:  //      引数３：局番
+  737:  //      引数４：PC局番
+  738:  //      引数５：受信先頭アドレス
+  739:  //  戻り値：0=OFF,1=ON,0未満=エラー
+  740:  //========================================================================================================
+  741:  int CMelsecP4::P4ReadB( char* station,char* pcstation,char* addr)
+  742:  {
+  743:          int ret,len;
+  744:          int retry=0,sum;
+  745:          char data[20],txt[10];
+  746:          char buf;
+  747:  
+  748:          if( m_fOpen == FALSE ) return(-1);
+  749:  
+  750:          memset( data, 0, sizeof(data));
+  751:          // 送信ループ
+  752:          while( retry < 8 ){
+  753:                  //----送信文字列の作成-----
+  754:                  MakeCmd( m_buf, sizeof(m_buf), station,pcstation, "BR",addr,8,"");
+  755:  
+  756:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+  757:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  758:  
+  759:                  //-----結果受信------
+  760:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してSTX or NAKを調べる
+  761:                  if( ret ) return(-3);
+  762:  
+  763:                  // 残りの処理数をコマンド別に決める
+  764:                  //-----STXの場合(data到着)------
+  765:                  if( data[0] == STX ){
+  766:                          // ETXになるまで受信を続ける
+  767:                          len =0;
+  768:                          memset( m_buf, 0, sizeof(m_buf) );
+  769:                          while( data[0] != ETX ){
+  770:                                  ret = Receive( data, sizeof(data), 1 );                 // 残りのバイト数を受信する
+  771:                                  if( ret ) return(-4);                                                   // エラー
+  772:                                  m_buf[len] = data[0];                                                   // バッファにため込む
+  773:                                  if( ++len == sizeof(m_buf) ) return(-5);                                                // バッ
+  774:  tァオーバーフロー
+  775:                          }
+  776:  
+  777:                          // 残り(4byte)を受信
+  778:                          ret = Receive( data, sizeof(data), 4 );
+  779:                          if( ret ) return(-6);                                                   // エラー
+  780:  
+  781:                          // サムチェックを比較
+  782:                          sum = GetCheckSum( m_buf );
+  783:                          wsprintf(txt, "%02X", sum);
+  784:  
+  785:                          // OKの場合はACKを返して正常終了
+  786:                          if( !memcmp( txt, data, 2 ) ){
+  787:                                  Answer(ACK,station,pcstation);
+  788:                                  break;
+  789:                          }
+  790:                          // NGの時はNAKを返す
+  791:                          Answer(NAK,station,pcstation);
+  792:                          retry++;                                                                                // ﾘﾄﾗｲする
+  793:                          continue;
+  794:                  }
+  795:  
+  796:                  //-----NAKの場合------
+  797:                  else if( data[0] == NAK ){
+  798:                          ret = Receive( data, sizeof(data), 8 );                 // 残りのバイト数を受信する
+  799:                          if( ret ) return(-7);
+  800:                          retry++;                                                                                // ﾘﾄﾗｲする
+  801:                          continue;
+  802:                  }
+  803:  
+  804:                  //----- エラーだ。-------
+  805:                  else return(-8);
+  806:          }
+***** CMELP4EX.CPP
+  849:  //========================================================================================================
+  850:  //      int CMelsecP4Ex::Receive( char* buf, int bufsize, int waitlen )
+  851:  //　機能　：受信バッファからデータを読み出す
+  852:  //      type　：private
+  853:  //      引数１：バッファ
+  854:  //      引数２：バッファサイズ
+  855:  //      引数３：受信待ちするデータバイト数
+  856:  //========================================================================================================
+  857:  int CMelsecP4Ex::Receive( char* buf, int bufsize, int waitlen )
+  858:  {
+  859:          int theLen,prevLen=0;
+  860:          int counter = 0;
+  861:  
+  862:          // 未オープンエラー
+  863:          if( m_fOpen == FALSE ) return(-1);
+  864:          if( waitlen <1 ) return(-2);
+  865:          if( bufsize < waitlen ) return(-2);
+  866:  
+  867:          memset( buf, 0, bufsize );
+  868:  
+  869:          while(1){
+  870:                  // 受信バッファにデータが来ているか調べる
+  871:                  theLen = TRS232C::ReadLength();
+  872:                  // 指定したバイト数に達した
+  873:                  if( theLen >= waitlen ){
+  874:                          break;
+  875:                  }
+  876:                  // 指定したバイト数に満たない
+  877:                  else{
+  878:                          Sleep(15);
+  879:                          if( theLen != prevLen ){        // 前より増えていたらカウンタリセット
+  880:                                  theLen = prevLen;
+  881:                                  counter=0;
+  882:                          }
+  883:                          else counter++;                         // 受信バイト数が変わらない
+  884:                  }
+  885:                  // タイムアウト
+  886:                  if( counter > 40 ) return(-3);
+  887:          }
+*****
+
+***** CMelP4.cpp
+  807:  
+  808:          // 受信データをバッファにｺﾋﾟｰする
+  809:          buf=m_buf[4];
+  810:  
+  811:          return(buf-0x30);
+  812:  }
+  813:  //========================================================================================================
+  814:  //      int CMelsecP4::P4WriteW( char* station, char* pcstation,char* addr, short counts, char* msg)
+  815:  //　機能　：プロトコル４形式でビットデバイス(1点)をON/OFF
+  816:  //      type　：private
+  817:  //      引数１：局番
+  818:  //      引数２：PC局番
+  819:  //      引数３：送信アドレス
+  820:  //      引数５：送信データ 0=OFF,それ以外=ON
+  821:  //      戻り値：0.=成功 それ以外=エラー
+  822:  //========================================================================================================
+  823:  int CMelsecP4::P4WriteB( char* station, char* pcstation,char* addr, int onoff)
+  824:  {
+  825:          int ret,len;
+  826:          int retry=0;
+  827:          char data[20];
+  828:          char send[10];
+  829:  
+  830:          // 未オープンエラー
+  831:          if( m_fOpen == FALSE ) return(-1);
+  832:  
+  833:          // 送信文字列の作成
+  834:          if( !onoff ) strcpy(send,"0\0");
+  835:          else strcpy(send,"1\0");                                // off
+  836:  
+  837:          MakeCmd( m_buf, sizeof(m_buf), station,pcstation, "BW",addr,1,send);
+  838:  
+  839:          // semd-loop
+  840:          while( retry < 8 ){
+  841:                  // 送信
+  842:                  TRS232C::ClearRcvBuffer();                              // モデムのポートをクリア
+  843:                  ret = TRS232C::Write( (BYTE*)m_buf, strlen(m_buf) );
+  844:                  //if(ret !=strlen(buf) ) return(-3);
+  845:  
+  846:                  // 結果受信
+  847:                  ret = Receive( data, sizeof(data), 1 );         // 1バイト受信してACK or NAKを調べる
+  848:                  if( ret ) return(-3);
+  849:  
+  850:                  // 残りのバイト数をコマンド別に決める
+  851:                  if( data[0] == ACK )  len = 6 ;         // ACKの場合
+  852:                  else if( data[0] == NAK )  len = 8;     // NAKの場合
+  853:                  else return(-4);                                                // エラーだ。
+  854:  
+  855:                  // 残りのバイト数を受信する
+  856:                  ret = Receive( data, sizeof(data), len );
+  857:                  if( ret ) return(-5);
+  858:  
+  859:                  // NAKの場合はエラーとしてﾘﾄﾗｲする
+  860:                  if( len == 8 ) retry++;
+  861:  
+  862:                  // ACKの場合はOK
+  863:                  else break;
+  864:          }
+  865:          return(0);
+***** CMELP4EX.CPP
+  888:  
+  889:          // 正常終了
+  890:          TRS232C::Read( (BYTE*)buf, waitlen );
+  891:          return(0);
+*****
+
+***** CMelP4.cpp
+  868:  //========================================================================================================
+  869:  //      int CMelsecP4::Receive( char* buf, int bufsize, int waitlen )
+  870:  //　機能　：受信バッファからデータを読み出す
+  871:  //      type　：private
+  872:  //      引数１：バッファ
+  873:  //      引数２：バッファサイズ
+  874:  //      引数３：受信待ちするデータバイト数
+  875:  //========================================================================================================
+  876:  int CMelsecP4::Receive( char* buf, int bufsize, int waitlen )
+  877:  {
+  878:          int theLen,prevLen=0;
+  879:          int counter = 0;
+  880:  
+  881:          // 未オープンエラー
+  882:          if( m_fOpen == FALSE ) return(-1);
+  883:          if( waitlen <1 ) return(-2);
+  884:          if( bufsize < waitlen ) return(-2);
+  885:  
+***** CMELP4EX.CPP
+  894:  //========================================================================================================
+  895:  //      int CMelsecP4Ex::Answer( char flg, char* station,char* pc )
+  896:  //　機能　：PLCに返事を返す
+  897:  //      type　：private
+  898:  //      引数１：ACK or NAK
+  899:  //      引数２：局番
+  900:  //      引数３：ＰＣ局番
+  901:  //========================================================================================================
+  902:  int CMelsecP4Ex::Answer( char flg, char* station,char* pc )
+  903:  {
+  904:          char buf[10];
+  905:          int ret;
+  906:  
+  907:          memset( buf, 0, sizeof(buf));
+  908:  
+  909:          buf[0]= flg;
+  910:          memcpy( buf+1, station, 2 );
+  911:          memcpy( buf+3, pc, 2 );
+  912:          buf[5]=CR;
+  913:          buf[6]=LF;
+  914:  
+  915:          ret = TRS232C::Write( (BYTE*)buf, strlen(buf) );
+  916:          return(0);
+  917:  }
+  918:  
+  919:  //========================================================================================================
+  920:  //      void CMelsecP4Ex::MakeCmd(char* buf,char* station,char* pc,char* cmd,char* addr,short counts,char*msg)
+  921:  //　機能　：プロトコル４形式での送信データを作成
+  922:  //      引数１：作成バッファ
+  923:  //      引数２：作成バッファサイズ
+  924:  //      引数３：局番
+  925:  //      引数４：PC局番
+  926:  //      引数５：コマンド
+  927:  //      引数６：先頭アドレス
+  928:  //      引数７：デバイスブロック数(max64)
+  929:  //      type　：public
+  930:  //========================================================================================================
+  931:  void CMelsecP4Ex::MakeCmd(char* buf,int bufsize,char* station,char* pc,char* cmd,char* addr,short counts,char*msg)
+  932:  {
+  933:          char txt[10];
+  934:          int sum;
+  935:  
+*****
+
+***** CMelP4.cpp
+  886:          memset( buf, 0, bufsize );
+  887:  
+  888:          while(1){
+  889:                  // 受信バッファにデータが来ているか調べる
+  890:                  theLen = TRS232C::ReadLength();
+  891:                  // 指定したバイト数に達した
+  892:                  if( theLen >= waitlen ){
+  893:                          break;
+  894:                  }
+  895:                  // 指定したバイト数に満たない
+  896:                  else{
+  897:                          Sleep(15);
+  898:                          if( theLen != prevLen ){        // 前より増えていたらカウンタリセット
+  899:                                  theLen = prevLen;
+  900:                                  counter=0;
+  901:                          }
+  902:                          else counter++;                         // 受信バイト数が変わらない
+  903:                  }
+  904:                  // タイムアウト
+  905:                  if( counter > 40 ) return(-3);
+  906:          }
+  907:  
+  908:          // 正常終了
+  909:          TRS232C::Read( (BYTE*)buf, waitlen );
+  910:          return(0);
+  911:  }
+***** CMELP4EX.CPP
+  936:          memset( buf, 0, bufsize );
+  937:          buf[0] = ENQ;
+  938:  
+  939:          // 局番、PC局番
+  940:          strcat( buf, station );
+  941:          strcat( buf, pc );
+  942:  
+  943:          // コマンド
+  944:          strcat( buf, cmd );
+  945:  
+  946:          // ウエイト
+  947:          wsprintf( txt, "%d", m_Wait );
+  948:          memcpy( &buf[strlen(buf)], txt, 1 );
+  949:  
+  950:          // 先頭デバイス
+  951:          strcat( buf, addr );
+  952:  
+  953:          // デバイス点数
+  954:          wsprintf( txt, "%02X", counts );
+  955:          memcpy( &buf[strlen(buf)], txt, 2 );
+  956:  
+  957:          // 送信メッセージ
+  958:          strcat( buf, msg );
+  959:  
+  960:          // さむチェック
+  961:          sum = GetCheckSum(&buf[1]);
+  962:          wsprintf( txt, "%02X", sum );
+  963:          memcpy( &buf[strlen(buf)], txt, 2 );
+  964:  
+  965:          buf[strlen (buf)] = CR;
+  966:          buf[strlen (buf)] = LF;
+  967:  }
+*****
+
+***** CMelP4.cpp
+  913:  //========================================================================================================
+  914:  //      int CMelsecP4::Answer( char flg, char* station,char* pc )
+  915:  //　機能　：PLCに返事を返す
+  916:  //      type　：private
+  917:  //      引数１：ACK or NAK
+  918:  //      引数２：局番
+  919:  //      引数３：ＰＣ局番
+  920:  //========================================================================================================
+  921:  int CMelsecP4::Answer( char flg, char* station,char* pc )
+  922:  {
+  923:          char buf[10];
+  924:          int ret;
+  925:  
+  926:          memset( buf, 0, sizeof(buf));
+  927:  
+  928:          buf[0]= flg;
+  929:          memcpy( buf+1, station, 2 );
+  930:          memcpy( buf+3, pc, 2 );
+  931:          buf[5]=CR;
+  932:          buf[6]=LF;
+  933:  
+  934:          ret = TRS232C::Write( (BYTE*)buf, strlen(buf) );
+  935:          return(0);
+  936:  }
+  937:  
+  938:  //========================================================================================================
+  939:  //      void CMelsecP4::MakeCmd(char* buf,char* station,char* pc,char* cmd,char* addr,short counts,char*msg)
+  940:  //　機能　：プロトコル４形式での送信データを作成
+  941:  //      引数１：作成バッファ
+***** CMELP4EX.CPP
+  969:  //========================================================================================================
+  970:  //      void CMelsecP4Ex::MakeCmd(char* buf,char* station,char* pc,char* cmd,char* addr,short counts,char*msg)
+  971:  //　機能　：２Ｃ プロトコル４形式での送信データを作成
+  972:  //      引数１：作成バッファ
+*****
+
+***** CMelP4.cpp
+  949:  //========================================================================================================
+  950:  void CMelsecP4::MakeCmd(char* buf,int bufsize,char* station,char* pc,char* cmd,char* addr,short counts,char*msg)
+  951:  {
+***** CMELP4EX.CPP
+  980:  //========================================================================================================
+  981:  void CMelsecP4Ex::MakeCmd2C(char* buf,int bufsize,char* station,char* pc,char* cmd,char* addr,short counts,char*msg)
+  982:  {
+*****
+
+***** CMelP4.cpp
+  956:          buf[0] = ENQ;
+  957:  
+***** CMELP4EX.CPP
+  987:          buf[0] = ENQ;
+  988:          buf[1] = 'F';
+  989:          buf[2] = 'B';
+  990:  
+  991:  
+*****
+
+***** CMelP4.cpp
+  964:  
+  965:          // ウエイト
+  966:          wsprintf( txt, "%d", m_Wait );
+  967:          memcpy( &buf[strlen(buf)], txt, 1 );
+  968:  
+  969:          // 先頭デバイス
+  970:          strcat( buf, addr );
+***** CMELP4EX.CPP
+  998:  
+  999:  
+ 1000:          // 先頭デバイス (8) Ex:ZR123456
+ 1001:          strcat( buf, addr );
+*****
+
+***** CMelP4.cpp
+  971:  
+  972:          // デバイス点数
+  973:          wsprintf( txt, "%02X", counts );
+  974:          memcpy( &buf[strlen(buf)], txt, 2 );
+  975:  
+***** CMELP4EX.CPP
+ 1002:  
+ 1003:          // デバイス点数 (4)
+ 1004:          wsprintf( txt, "%04X", counts );
+ 1005:          memcpy( &buf[strlen(buf)], txt, 4 );
+ 1006:  
+*****
+
+***** CMelP4.cpp
+  987:  
+  988:  //========================================================================================================
+  989:  //      void CMelsecP4Ex::MakeCmd(char* buf,char* station,char* pc,char* cmd,char* addr,short counts,char*msg)
+  990:  //　機能　：２Ｃ プロトコル４形式での送信データを作成
+  991:  //      引数１：作成バッファ
+  992:  //      引数２：作成バッファサイズ
+  993:  //      引数３：局番
+  994:  //      引数４：PC局番
+  995:  //      引数５：コマンド
+  996:  //      引数６：先頭アドレス
+  997:  //      引数７：デバイスブロック数(max64)
+  998:  //      type　：public
+  999:  //========================================================================================================
+ 1000:  void CMelsecP4::MakeCmd2C(char* buf,int bufsize,char* station,char* pc,char* cmd,char* addr,short counts,char*msg)
+ 1001:  {
+ 1002:          char txt[10];
+ 1003:          int sum;
+ 1004:  
+***** CMELP4EX.CPP
+ 1018:  
+ 1019:  
+ 1020:  //========================================================================================================
+ 1021:  //      int CMelsecP4Ex::GetCheckSum(char* str )
+ 1022:  //      type　：private
+ 1023:  //      引数　：計算する文字列
+ 1024:  //      返値　：算出したsamチェック
+ 1025:  //　機能　：sumチェックの計算
+ 1026:  //========================================================================================================
+ 1027:  int CMelsecP4Ex::GetCheckSum(char* str )
+ 1028:  {
+ 1029:          int data=0;
+ 1030:          int i,len;
+ 1031:  
+ 1032:          if( str==NULL ) return(0);
+ 1033:  
+ 1034:          len = strlen(str);
+ 1035:          if( len <=0 ) return(0);
+ 1036:  
+ 1037:          for( i=0; i< len; i++ ) data += (int)str[i];
+ 1038:  
+ 1039:          data = data & 0x000000ff;
+ 1040:  
+ 1041:          return(data);
+ 1042:  }
+ 1043:  //========================================================================================================
+ 1044:  //      int CMelsecP4Ex::Str2Mel(char* buf, unsigned int bufsize, char* str)
+ 1045:  //      機能　：文字列を、Melsec送信形式に変換する
+ 1046:  //                      ex) "A1234"->"31413433"
+ 1047:  //      引数１：出力バッファ
+ 1048:  //      引数２：バッファサイズ（変換元データ長の２倍+1は必要）
+ 1049:  //      引数３：変換元文字列データ(NULL-terminated)
+ 1050:  //      返値　：0=OK
+ 1051:  //========================================================================================================
+ 1052:  int CMelsecP4Ex::Str2Mel(char* buf, unsigned int bufsize, char* str)
+ 1053:  {
+ 1054:          unsigned int i,len;
+ 1055:          char txt[10];
+ 1056:  
+ 1057:          len = strlen(str);
+ 1058:          if( len*2 >= bufsize ) return(-1);
+ 1059:  
+*****
+
+***** CMelP4.cpp
+ 1005:          memset( buf, 0, bufsize );
+ 1006:          buf[0] = ENQ;
+ 1007:          buf[1] = 'F';
+ 1008:          buf[2] = 'B';
+ 1009:  
+ 1010:  
+ 1011:          // 局番、PC局番
+ 1012:          strcat( buf, station );
+ 1013:          strcat( buf, pc );
+ 1014:  
+ 1015:          // コマンド
+ 1016:          strcat( buf, cmd );
+ 1017:  
+ 1018:  
+ 1019:          // 先頭デバイス (8) Ex:ZR123456
+ 1020:          strcat( buf, addr );
+ 1021:  
+ 1022:          // デバイス点数 (4)
+ 1023:          wsprintf( txt, "%04X", counts );
+ 1024:          memcpy( &buf[strlen(buf)], txt, 4 );
+ 1025:  
+ 1026:          // 送信メッセージ
+ 1027:          strcat( buf, msg );
+ 1028:  
+ 1029:          // さむチェック
+ 1030:          sum = GetCheckSum(&buf[1]);
+ 1031:          wsprintf( txt, "%02X", sum );
+ 1032:          memcpy( &buf[strlen(buf)], txt, 2 );
+ 1033:  
+ 1034:          buf[strlen (buf)] = CR;
+ 1035:          buf[strlen (buf)] = LF;
+ 1036:  }
+***** CMELP4EX.CPP
+ 1060:          memset( buf, 0, bufsize );
+ 1061:  
+ 1062:          for( i=0;i<len;i++){
+ 1063:                  // 上下を入れ替える
+ 1064:                  if( i+1==len )
+ 1065:                          wsprintf( txt,"00");
+ 1066:                  else
+ 1067:                          wsprintf( txt,"%02X",str[i+1]);
+ 1068:                  memcpy( &buf[i*2], txt, 2 );
+ 1069:  
+ 1070:                  wsprintf( txt,"%02X",str[i]);
+ 1071:                  i++;
+ 1072:                  memcpy( &buf[i*2], txt, 2 );
+ 1073:          }
+ 1074:  
+ 1075:          return(0);
+ 1076:  
+ 1077:  }
+*****
+
+***** CMelP4.cpp
+ 1037:  
+ 1038:  
+***** CMELP4EX.CPP
+ 1078:  
+ 1079:  //========================================================================================================
+ 1080:  //      unsigned char CMelsecP4Ex::htoi( char *hexstr , short len )
+ 1081:  //      機能　：16進（文字列２文字のみ）を整数値(unsigned char型)に変換する
+ 1082:  //      引数　：変換元データ格納ポインタ
+ 1083:  //      返値　：変換後データ
+ 1084:  //========================================================================================================
+ 1085:  int CMelsecP4Ex::Mel2Str(char* buf, unsigned int bufsize, char* melstr)
+ 1086:  {
+ 1087:          unsigned int i,len;
+ 1088:  
+ 1089:          len = strlen(melstr);
+ 1090:          if( bufsize<=len/2 ) return(-1);
+ 1091:  
+ 1092:          memset( buf, 0, bufsize );
+ 1093:  
+ 1094:          for( i=0;i<len;i+=2){
+ 1095:                  // 上下を入れ替える
+ 1096:                  if( i+2>=len )
+ 1097:                          buf[strlen(buf)]=0x20;
+ 1098:                  else
+ 1099:                          buf[strlen(buf)]=htoi( &melstr[i+2],2);
+ 1100:  
+ 1101:                  buf[strlen(buf)]=htoi( &melstr[i],2);
+ 1102:                  i+=2;
+ 1103:          }
+ 1104:          return(0);
+ 1105:  }
+ 1106:  
+*****
+
+***** CMelP4.cpp
+ 1039:  //========================================================================================================
+ 1040:  //      int CMelsecP4::GetCheckSum(char* str )
+ 1041:  //      type　：private
+ 1042:  //      引数　：計算する文字列
+ 1043:  //      返値　：算出したsamチェック
+ 1044:  //　機能　：sumチェックの計算
+ 1045:  //========================================================================================================
+ 1046:  int CMelsecP4::GetCheckSum(char* str )
+ 1047:  {
+ 1048:          int data=0;
+ 1049:          int i,len;
+ 1050:  
+ 1051:          if( str==NULL ) return(0);
+ 1052:  
+ 1053:          len = strlen(str);
+ 1054:          if( len <=0 ) return(0);
+ 1055:  
+ 1056:          for( i=0; i< len; i++ ) data += (int)str[i];
+ 1057:  
+ 1058:          data = data & 0x000000ff;
+ 1059:  
+ 1060:          return(data);
+ 1061:  }
+***** CMELP4EX.CPP
+ 1107:  //========================================================================================================
+ 1108:  //      unsigned char CMelsecP4Ex::htoi( char *hexstr , short len )
+ 1109:  //      機能　：16進（文字列２文字のみ）を整数値(unsigned char型)に変換する
+ 1110:  //      引数　：変換元データ格納ポインタ
+ 1111:  //      返値　：変換後データ
+ 1112:  //========================================================================================================
+ 1113:  unsigned char CMelsecP4Ex::htoi( char *hexstr , short len )
+ 1114:  {
+ 1115:          unsigned char ret = 0;
+ 1116:          short i;
+ 1117:  
+ 1118:          if( len > 4 ) return 0;
+ 1119:          for( i = 0 ; i < len ; i++ ){
+ 1120:                  ret *= 16;
+ 1121:                  if( hexstr[i] < 'A' ) ret += hexstr[i] - '0';
+ 1122:                  else
+ 1123:                  if( hexstr[i] < 'a' ) ret += hexstr[i] - 'A'+10;
+ 1124:                  else
+ 1125:                          ret += hexstr[i] - 'a'+10;
+ 1126:          }
+ 1127:          return(ret);
+ 1128:  }
+ 1129:  
+ 1130:  
+ 1131:  BOOL CMelsecP4Ex::ULChg( char* buf )
+ 1132:  {
+ 1133:          char tmp[8];
+ 1134:  
+ 1135:          if( strlen(buf)<8 )
+ 1136:                  return FALSE;
+ 1137:  
+ 1138:          memcpy( tmp , buf , 8);
+ 1139:          memcpy( buf+0 , tmp+4 , 4 );
+ 1140:          memcpy( buf+4 , tmp+0 , 4 );
+ 1141:          
+ 1142:          return TRUE;
+ 1143:  }
+*****
+
+***** CMelP4.cpp
+ 1062:  //========================================================================================================
+ 1063:  //      int CMelsecP4::Str2Mel(char* buf, unsigned int bufsize, char* str)
+ 1064:  //      機能　：文字列を、Melsec送信形式に変換する
+ 1065:  //                      ex) "A1234"->"31413433"
+ 1066:  //      引数１：出力バッファ
+ 1067:  //      引数２：バッファサイズ（変換元データ長の２倍+1は必要）
+ 1068:  //      引数３：変換元文字列データ(NULL-terminated)
+ 1069:  //      返値　：0=OK
+ 1070:  //========================================================================================================
+ 1071:  int CMelsecP4::Str2Mel(char* buf, unsigned int bufsize, char* str)
+ 1072:  {
+ 1073:          unsigned int i,len;
+ 1074:          char txt[10];
+ 1075:  
+ 1076:          len = strlen(str);
+ 1077:          if( len*2 >= bufsize ) return(-1);
+ 1078:  
+ 1079:          memset( buf, 0, bufsize );
+ 1080:  
+ 1081:          for( i=0;i<len;i++){
+ 1082:                  // 上下を入れ替える
+ 1083:                  if( i+1==len )
+ 1084:                          wsprintf( txt,"00");
+ 1085:                  else
+ 1086:                          wsprintf( txt,"%02X",str[i+1]);
+ 1087:                  memcpy( &buf[i*2], txt, 2 );
+ 1088:  
+ 1089:                  wsprintf( txt,"%02X",str[i]);
+ 1090:                  i++;
+ 1091:                  memcpy( &buf[i*2], txt, 2 );
+ 1092:          }
+ 1093:  
+ 1094:          return(0);
+ 1095:  
+ 1096:  }
+ 1097:  
+ 1098:  //========================================================================================================
+ 1099:  //      unsigned char CMelsecP4::htoi( char *hexstr , short len )
+ 1100:  //      機能　：16進（文字列２文字のみ）を整数値(unsigned char型)に変換する
+ 1101:  //      引数　：変換元データ格納ポインタ
+ 1102:  //      返値　：変換後データ
+ 1103:  //========================================================================================================
+ 1104:  int CMelsecP4::Mel2Str(char* buf, unsigned int bufsize, char* melstr)
+ 1105:  {
+ 1106:          unsigned int i,len;
+ 1107:  
+ 1108:          len = strlen(melstr);
+ 1109:          if( bufsize<=len/2 ) return(-1);
+ 1110:  
+ 1111:          memset( buf, 0, bufsize );
+ 1112:  
+ 1113:          for( i=0;i<len;i+=2){
+ 1114:                  // 上下を入れ替える
+ 1115:                  if( i+2>=len )
+ 1116:                          buf[strlen(buf)]=0x20;
+ 1117:                  else
+ 1118:                          buf[strlen(buf)]=htoi( &melstr[i+2],2);
+ 1119:  
+ 1120:                  buf[strlen(buf)]=htoi( &melstr[i],2);
+ 1121:                  i+=2;
+ 1122:          }
+ 1123:          return(0);
+ 1124:  }
+ 1125:  
+ 1126:  //========================================================================================================
+ 1127:  //      unsigned char CMelsecP4::htoi( char *hexstr , short len )
+ 1128:  //      機能　：16進（文字列２文字のみ）を整数値(unsigned char型)に変換する
+ 1129:  //      引数　：変換元データ格納ポインタ
+ 1130:  //      返値　：変換後データ
+ 1131:  //========================================================================================================
+ 1132:  unsigned char CMelsecP4::htoi( char *hexstr , short len )
+ 1133:  {
+ 1134:          unsigned char ret = 0;
+ 1135:          short i;
+ 1136:  
+ 1137:          if( len > 4 ) return 0;
+ 1138:          for( i = 0 ; i < len ; i++ ){
+ 1139:                  ret *= 16;
+ 1140:                  if( hexstr[i] < 'A' ) ret += hexstr[i] - '0';
+ 1141:                  else
+ 1142:                  if( hexstr[i] < 'a' ) ret += hexstr[i] - 'A'+10;
+ 1143:                  else
+ 1144:                          ret += hexstr[i] - 'a'+10;
+ 1145:          }
+ 1146:          return(ret);
+ 1147:  }
+***** CMELP4EX.CPP
+*****
+

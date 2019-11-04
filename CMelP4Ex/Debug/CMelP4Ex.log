@@ -1,0 +1,68 @@
+﻿  stdafx.cpp
+  TRS232C.cpp
+  CMelP4Ex.cpp
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.cpp(6): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.cpp(6): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): error C2146: syntax error: missing ';' before identifier 'BOOL'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(104): error C2143: syntax error: missing ';' before '{'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(104): error C2447: '{': missing function header (old-style formal list?)
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(108): error C2144: syntax error: 'void' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(108): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(108): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(114): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(114): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(114): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(119): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(119): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(119): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(124): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(124): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(124): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(129): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(129): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(129): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(135): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(135): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(135): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(140): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(140): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(140): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(145): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(145): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(145): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(150): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(150): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(150): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(155): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(155): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(155): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(160): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(160): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(160): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(165): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(165): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(165): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(170): error C2144: syntax error: 'int' should be preceded by ';'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(170): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(170): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(175): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(175): error C2086: 'int CMELP4EX_API': redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(103): note: see declaration of 'CMELP4EX_API'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(175): error C2146: syntax error: missing ';' before identifier 'BOOL'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(176): error C2143: syntax error: missing ';' before '{'
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex\cmelp4ex.h(176): error C2447: '{': missing function header (old-style formal list?)
+  Generating Code...

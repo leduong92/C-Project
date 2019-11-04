@@ -1,0 +1,35 @@
+alter   table TR_CURING_JOB 	add column  START_DATE 	char(6);
+alter   table TR_CURING_JOB 	add column  COMPOUND 	char(30);
+
+alter   table TR_LABEL_INFO	add column   ITEM		char(30);
+alter   table TR_LABEL_INFO	add column   COMPOUND	char(30);
+
+
+
+alter   table TR_CURING_JOB	add column   CURE_TEMP	float8;
+alter   table TR_CURING_JOB	add column   CURE_TIME	float8;
+alter   table TR_CURING_JOB	add column   POSTCURE_TEMP	float8;
+alter   table TR_CURING_JOB	add column   POSTCURE_TIME	float8;
+
+
+
+alter   table TD_PACKING_LABEL  add column   LOT_NO  char(15);
+alter   table TD_PACKING_LABEL  add column   TAG_NO char(5);
+
+
+
+alter   table TM_PRINT_PACK	add column   LOT_NO char(6);
+alter   table TM_PRINT_PACK	add column   TAG_NO char(5);
+alter   table TM_PRINT_PACK	add column   STATUS char(1);
+
+
+alter   table TM_PRINT_BOX	add column   LOT_NO char(6);
+alter   table TM_PRINT_BOX	add column   TAG_NO char(5);
+alter   table TM_PRINT_BOX	add column   STATUS char(1);
+
+
+alter   table TD_PACKING_LABEL   add column   MACHINE_NO char(6);
+alter   table TD_PACKING_LABEL   add column   STATUS_BOX char(1);
+
+
+alter   table TM_POSTMACHINE add column   machine_name VARchar(30);

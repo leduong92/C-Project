@@ -1,0 +1,10 @@
+﻿  stdafx.cpp
+  TRS232C.cpp
+  CMelP4Ex.cpp
+c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex.cpp(6): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+  c:\softwarevnn\cmelp4ex\cmelp4ex\cmelp4ex.cpp(6): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+  Generating Code...
+  dllmain.cpp
+     Creating library C:\SoftwareVNN\CMelP4Ex\Debug\CMelP4Ex.lib and object C:\SoftwareVNN\CMelP4Ex\Debug\CMelP4Ex.exp
+  CMelP4Ex.vcxproj -> C:\SoftwareVNN\CMelP4Ex\Debug\CMelP4Ex.dll
+  CMelP4Ex.vcxproj -> C:\SoftwareVNN\CMelP4Ex\Debug\CMelP4Ex.pdb (Full PDB)
